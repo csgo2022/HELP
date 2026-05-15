@@ -1,0 +1,56 @@
+<top-app-bar title="个人资料" showBack="{{true}}"></top-app-bar>
+
+<view class="user-info-content">
+
+  <!-- Avatar Section -->
+  <view class="avatar-section">
+    <view class="avatar-wrap">
+      <image wx:if="{{userInfo.avatar}}" class="avatar-img" src="{{userInfo.avatar}}" mode="aspectFill" />
+      <view wx:else class="avatar-circle">{{userInfo.name ? userInfo.name.charAt(0) : ''}}</view>
+      <view class="camera-overlay" bindtap="onEditProfile">
+        <image class="camera-icon" src="/images/icons/photo-camera.svg" mode="aspectFit" />
+      </view>
+    </view>
+    <text class="user-name">{{userInfo.name}}</text>
+    <view class="tag-row">
+      <view class="tag" wx:for="{{userInfo.tags}}" wx:key="*this">{{item}}</view>
+    </view>
+  </view>
+
+  <!-- Basic Info Section -->
+  <view class="info-card">
+    <view class="info-header">
+      <image class="info-header-icon" src="/images/icons/person.svg" mode="aspectFit" />
+      <text class="info-header-title">基本信息</text>
+    </view>
+
+    <view class="info-row">
+      <text class="info-label">姓名</text>
+      <text class="info-value">{{userInfo.name}}</text>
+    </view>
+    <view class="divider"></view>
+
+    <view class="info-row">
+      <text class="info-label">性别</text>
+      <text class="info-value">{{userInfo.gender}}</text>
+    </view>
+    <view class="divider"></view>
+
+    <view class="info-row">
+      <text class="info-label">出生日期</text>
+      <text class="info-value">{{userInfo.birthDate}}</text>
+    </view>
+    <view class="divider"></view>
+
+    <view class="info-row">
+      <text class="info-label">联系电话</text>
+      <text class="info-value">{{userInfo.phone}}</text>
+    </view>
+  </view>
+
+  <!-- Edit Button -->
+  <view class="edit-btn" bindtap="onEditProfile">
+    <text class="edit-btn-text">修改资料</text>
+  </view>
+
+</view>

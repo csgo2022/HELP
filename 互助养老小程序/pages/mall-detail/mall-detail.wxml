@@ -1,0 +1,80 @@
+<top-app-bar title="确认兑换" showBack="{{true}}"></top-app-bar>
+
+<view class="detail-content">
+  <!-- Address Section -->
+  <view class="card address-card" bindtap="onAddressTap">
+    <view class="address-top">
+      <view class="address-left">
+        <image class="addr-icon" src="/images/icons/location.svg" mode="aspectFit" />
+        <text class="addr-label">收货地址</text>
+      </view>
+      <image class="chevron-icon" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+    </view>
+    <view class="address-info" wx:if="{{selectedAddress}}">
+      <view class="address-name-row">
+        <text class="address-name">{{selectedAddress.name}}</text>
+        <text class="address-phone">{{selectedAddress.phone}}</text>
+      </view>
+      <text class="address-text">{{selectedAddress.address}}</text>
+    </view>
+    <view class="address-info" wx:else>
+      <text class="address-text placeholder">请选择收货地址</text>
+    </view>
+  </view>
+
+  <!-- Product Card -->
+  <view class="card">
+    <view class="detail-product-img">
+      <image wx:if="{{item.image}}" src="{{item.image}}" mode="aspectFill" class="detail-img" />
+      <text class="detail-placeholder-text" wx:else>{{item.title}}</text>
+    </view>
+    <view class="detail-product-info">
+      <text class="detail-product-title">{{item.title}}</text>
+      <view class="detail-points-badge">{{item.points}} 积分</view>
+      <text class="detail-product-desc">{{item.description}}</text>
+    </view>
+  </view>
+
+  <!-- Quantity Selector -->
+  <view class="card">
+    <view class="qty-row">
+      <text class="qty-label">兑换数量</text>
+      <view class="qty-controls">
+        <view class="qty-btn" bindtap="onMinus">
+          <image class="qty-btn-icon" src="/images/icons/remove.svg" mode="aspectFit" />
+        </view>
+        <text class="qty-number">{{quantity}}</text>
+        <view class="qty-btn" bindtap="onPlus">
+          <image class="qty-btn-icon" src="/images/icons/add.svg" mode="aspectFit" />
+        </view>
+      </view>
+    </view>
+    <view class="qty-divider"></view>
+    <view class="points-summary">
+      <view class="summary-row">
+        <text class="summary-label">可用积分</text>
+        <text class="summary-value">{{availablePointsFormatted}}</text>
+      </view>
+      <view class="summary-row">
+        <text class="summary-label">预计消耗</text>
+        <text class="summary-value summary-consumed">{{totalPointsFormatted}} 积分</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Info Banner -->
+  <view class="info-banner">
+    <image class="info-icon" src="/images/icons/info.svg" mode="aspectFit" />
+    <text class="info-text">兑换后预计 3 个工作日 内通过中国邮政发出。请确保手机号畅通。</text>
+  </view>
+</view>
+
+<!-- Bottom Action Bar -->
+<view class="bottom-bar">
+  <view class="bottom-bar-inner">
+    <view class="action-row">
+      <view class="action-btn action-cancel" bindtap="onCancel">取消</view>
+      <view class="action-btn action-confirm" bindtap="onConfirm">确认兑换</view>
+    </view>
+  </view>
+</view>

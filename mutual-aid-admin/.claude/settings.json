@@ -1,0 +1,50 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"D:/互助养老3/互助养老（老人端）/utils\")",
+      "Bash(mvn dependency:resolve -DincludeScope=compile -q)",
+      "Bash(mvn dependency:copy -Dartifact=com.aliyun.oss:aliyun-sdk-oss:3.18.1 -DoutputDirectory=./target/tmp -q)",
+      "Bash(jar tf *)",
+      "Bash(ls \"D:/zuoye3\")",
+      "Read(//d/zuoye3/**)",
+      "Bash(npm --version)",
+      "Bash(mkdir -p \"D:/zuoye3/docs/superpowers/specs\")",
+      "Bash(java --version)",
+      "Bash(mvn --version)",
+      "Read(//c/Program Files/**)",
+      "Read(//c//**)",
+      "Bash(where mvn *)",
+      "Read(//c/Users/baogu/.claude/plugins/cache/claude-plugins-official/superpowers/5.1.0/skills/subagent-driven-development/**)",
+      "Bash(mkdir -p \"D:/zuoye3/chat-server/src/main/java/com/chat/config\" \"D:/zuoye3/chat-server/src/main/java/com/chat/websocket\" \"D:/zuoye3/chat-server/src/main/java/com/chat/model\" \"D:/zuoye3/chat-server/src/main/resources\")",
+      "Bash(mkdir -p \"D:\\\\zuoye3\\\\chat-miniapp\\\\pages\\\\login\" \"D:\\\\zuoye3\\\\chat-miniapp\\\\pages\\\\chat\" \"D:\\\\zuoye3\\\\chat-miniapp\\\\utils\")",
+      "Bash(java -version)",
+      "Bash(mvn clean *)",
+      "Bash(java -jar target/chat-server-1.0.0.jar)",
+      "Bash(echo \"PID: $!\")",
+      "Bash(sleep 8 && netstat -an | grep 8080 2>/dev/null || ss -tlnp | grep 8080 2>/dev/null || echo \"Checking another way...\" && cat /tmp/chat-server.log 2>/dev/null | tail -20)",
+      "Read(//tmp/**)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/)",
+      "Bash(mvn test *)",
+      "Bash(python3 -c ' *)",
+      "Bash(node -e ' *)",
+      "Bash(curl -s http://localhost:8080/api/mini/health-records)",
+      "Bash(curl -s -w \"\\\\nHTTP_CODE:%{http_code}\" http://localhost:8080/api/mini/health-records)",
+      "Bash(nslookup ocr-api.cn-hangzhou.aliyuncs.com)",
+      "Bash(\"C:/Program Files/Java/jdk-17.0.18/bin/javac\" -version)",
+      "Bash(echo \"EXIT CODE: $?\")",
+      "Bash(ls -la \"D:\\\\zuoye5.155\" 2>/dev/null || echo \"Directory not found\")",
+      "Read(//d/zuoye5.155/**)",
+      "Bash(python3 -c \"import docx; print\\('python-docx available'\\)\")",
+      "Bash(python3 -c \"import olefile; print\\('olefile available'\\)\")",
+      "Bash(antiword -m UTF-8 \"D:/zuoye5.155/论文正文内容撰写建议.doc\")"
+    ],
+    "additionalDirectories": [
+      "D:\\互助养老3\\互助养老（老人端）",
+      "D:\\zuoye3\\docs\\superpowers",
+      "D:\\zuoye3\\chat-server\\src\\main\\java\\com\\chat",
+      "D:\\zuoye3\\chat-server",
+      "D:\\zuoye3\\chat-miniapp\\pages",
+      "D:\\zuoye3\\chat-miniapp"
+    ]
+  }
+}

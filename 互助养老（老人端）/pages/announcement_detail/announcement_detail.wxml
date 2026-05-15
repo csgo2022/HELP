@@ -1,0 +1,22 @@
+<view class="page-container">
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title">公告详情</text>
+    </view>
+  </view>
+
+  <view class="ann-detail-content">
+    <view class="ann-detail-header">
+      <view class="ann-detail-tags">
+        <text class="ann-detail-tag">{{tag}}</text>
+        <text class="ann-detail-date">{{date}}</text>
+      </view>
+      <text class="ann-detail-title">{{title}}</text>
+    </view>
+
+    <view class="ann-detail-body">
+      <text class="ann-detail-text">{{content}}</text>
+    </view>
+  </view>
+</view>

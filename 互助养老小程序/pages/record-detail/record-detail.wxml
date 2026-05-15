@@ -1,0 +1,54 @@
+<top-app-bar title="记录详情" showBack="{{true}}"></top-app-bar>
+
+<view class="rdetail-content">
+  <!-- Success Card -->
+  <view class="success-card">
+    <view class="success-inner">
+      <view class="success-icon-wrap">
+        <image class="success-icon" src="/images/icons/check-circle.svg" mode="aspectFit" />
+      </view>
+      <text class="success-title">时长已入账</text>
+      <text class="success-date">{{detail.time}}</text>
+
+      <view class="success-stats">
+        <view class="success-stat">
+          <text class="ss-label">服务时长</text>
+          <text class="ss-value">+{{detail.duration}}<text class="ss-unit">小时</text></text>
+        </view>
+        <view class="ss-divider"></view>
+        <view class="success-stat">
+          <text class="ss-label">积分获得</text>
+          <text class="ss-value text-green">+15</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Service Info -->
+  <view class="info-section">
+    <text class="info-section-title">服务信息</text>
+    <view class="info-card">
+      <view class="info-item" wx:for="{{infoList}}" wx:key="index">
+        <view class="info-left">
+          <image class="info-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
+          <text class="info-label">{{item.label}}</text>
+        </view>
+        <text class="info-value">{{item.value}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Summary -->
+  <view class="summary-section">
+    <text class="info-section-title">服务总结</text>
+    <view class="summary-card">
+      <text class="summary-text">{{detail.summary}}</text>
+    </view>
+  </view>
+
+  <!-- Certificate -->
+  <view class="cert-btn" bindtap="onCert">
+    <image class="cert-icon" src="/images/icons/verified.svg" mode="aspectFit" />
+    <text>查看服务证明</text>
+  </view>
+</view>

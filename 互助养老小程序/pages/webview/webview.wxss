@@ -1,0 +1,18 @@
+.back-overlay {
+  position: fixed;
+  top: 80rpx;
+  left: 24rpx;
+  width: 72rpx;
+  height: 72rpx;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.back-icon {
+  width: 36rpx;
+  height: 36rpx;
+}

@@ -1,0 +1,78 @@
+<top-app-bar title="积分商城" showBack="{{true}}"></top-app-bar>
+
+<view class="mall-content">
+  <!-- Points Balance Card -->
+  <view class="points-card time-bank-gradient">
+    <text class="points-label">可用积分总额</text>
+    <view class="points-row">
+      <text class="points-number">{{points}}</text>
+      <text class="points-unit">积分</text>
+    </view>
+    <view class="points-actions">
+      <view class="points-btn points-btn-outline" bindtap="onPointsDetail">积分明细</view>
+      <view class="points-btn points-btn-primary" bindtap="onGetMore">获取更多</view>
+    </view>
+  </view>
+
+  <!-- Category Filters -->
+  <scroll-view class="category-scroll" scroll-x enhanced enhancedShowScrollbar="{{false}}">
+    <view class="category-row">
+      <view wx:for="{{categories}}" wx:for-item="cat" wx:for-index="index" wx:key="index"
+        class="category-item {{activeCategory === index ? 'category-active' : 'category-default'}}"
+        data-index="{{index}}" bindtap="onCategoryTap">
+        <text>{{cat}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- Service Hours Exchange -->
+  <view class="section">
+    <view class="section-head">
+      <image class="section-icon" src="/images/icons/schedule.svg" mode="aspectFit" />
+      <text class="section-title">服务时长兑换</text>
+    </view>
+    <view class="exchange-list">
+      <view wx:for="{{exchangeOptions}}" wx:for-item="item" wx:for-index="index" wx:key="index" class="exchange-card time-bank-gradient">
+        <text class="exchange-title">{{item.title}}</text>
+        <text class="exchange-desc">{{item.desc}}</text>
+        <view class="exchange-bottom">
+          <text class="exchange-points">{{item.points}} 积分</text>
+          <view class="exchange-btn" data-item="{{item}}" bindtap="onExchange">立即兑换</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Product Bento Grid -->
+  <view class="section">
+    <view class="section-head">
+      <image class="section-icon" src="/images/icons/shopping-basket.svg" mode="aspectFit" />
+      <text class="section-title">好物推荐</text>
+    </view>
+    <view class="product-list">
+      <view wx:for="{{products}}" wx:for-item="item" wx:for-index="index" wx:key="index" class="product-card">
+        <view class="product-img-wrap">
+          <image wx:if="{{item.image}}" src="{{item.image}}" mode="aspectFill" class="product-img" />
+          <view class="product-img-placeholder" wx:else>
+            <text class="placeholder-text">{{item.name}}</text>
+          </view>
+          <view wx:if="{{item.badge}}" class="product-badge">{{item.badge}}</view>
+        </view>
+        <text class="product-name">{{item.name}}</text>
+        <view class="product-bottom">
+          <text class="product-points">{{item.points}} 积分</text>
+          <view class="exchange-sm-btn" data-item="{{item}}" bindtap="onProductExchange">立即兑换</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Info Banner -->
+  <view class="info-banner">
+    <image class="info-icon" src="/images/icons/info.svg" mode="aspectFit" />
+    <view class="info-text-wrap">
+      <text class="info-title">兑换须知</text>
+      <text class="info-desc">兑换商品将于 7 个工作日内发货。积分有效期为获取之日起 12 个月，逾期自动清零。请及时使用。</text>
+    </view>
+  </view>
+</view>

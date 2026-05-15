@@ -1,0 +1,61 @@
+<top-app-bar title="修改资料" showBack="{{true}}"></top-app-bar>
+
+<view class="edit-profile-content">
+  <form bindsubmit="onSubmit" report-submit="true">
+
+    <!-- Avatar Section -->
+    <view class="avatar-section" bindtap="onChooseAvatar">
+      <view class="avatar-wrap">
+        <image wx:if="{{formData.avatar}}" class="avatar-img" src="{{formData.avatar}}" mode="aspectFill" />
+        <view wx:else class="avatar-circle">{{formData.name ? formData.name.charAt(0) : ''}}</view>
+        <view class="camera-overlay">
+          <image class="camera-icon" src="/images/icons/photo-camera.svg" mode="aspectFit" />
+        </view>
+      </view>
+      <text class="avatar-hint">点击更换头像</text>
+    </view>
+
+    <!-- Form Section -->
+    <view class="form-card">
+      <!-- 真实姓名 -->
+      <view class="form-item">
+        <text class="form-label">真实姓名</text>
+        <input class="form-input" name="name" value="{{formData.name}}" placeholder="请输入真实姓名" />
+      </view>
+      <view class="divider"></view>
+
+      <!-- 性别 -->
+      <view class="form-item">
+        <text class="form-label">性别</text>
+        <view class="gender-group">
+          <view class="gender-btn {{formData.gender === '男' ? 'gender-active' : ''}}" bindtap="onGenderTap" data-gender="男">
+            <text>男</text>
+          </view>
+          <view class="gender-btn {{formData.gender === '女' ? 'gender-active' : ''}}" bindtap="onGenderTap" data-gender="女">
+            <text>女</text>
+          </view>
+        </view>
+      </view>
+      <view class="divider"></view>
+
+      <!-- 出生日期 -->
+      <view class="form-item">
+        <text class="form-label">出生日期</text>
+        <picker mode="date" value="{{formData.birthDate}}" bindchange="onDateChange">
+          <view class="form-input {{formData.birthDate ? '' : 'form-input-placeholder'}}">{{formData.birthDate || '请选择出生日期'}}</view>
+        </picker>
+      </view>
+      <view class="divider"></view>
+
+      <!-- 联系电话 -->
+      <view class="form-item">
+        <text class="form-label">联系电话</text>
+        <input class="form-input" type="number" maxlength="11" name="phone" value="{{formData.phone}}" placeholder="请输入联系电话" />
+      </view>
+    </view>
+
+    <!-- Submit Button -->
+    <button class="submit-btn" form-type="submit">保存并返回</button>
+
+  </form>
+</view>

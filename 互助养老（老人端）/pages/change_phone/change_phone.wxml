@@ -1,0 +1,33 @@
+<view class="page-container">
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title" style="color: #27272a;">换绑手机号</text>
+    </view>
+    <view class="header-spacer"></view>
+  </view>
+
+  <view class="step-indicator-box">
+    <view class="step-icon-wrap">📞</view>
+    <text class="step-indicator-text" wx:if="{{step === 1}}">为了您的账号安全，需先验证原手机号</text>
+    <text class="step-indicator-text" wx:else>验证通过，请输入新手机号</text>
+  </view>
+
+  <view class="form-area">
+    <view class="input-group">
+      <text class="input-label">{{step === 1 ? '手机号' : '新手机号'}}</text>
+      <input class="input-field {{step === 1 ? 'readonly' : ''}}" type="text" placeholder="{{step === 2 ? '请输入新手机号' : ''}}" value="{{step === 1 ? phone : newPhone}}" disabled="{{step === 1}}" bindinput="onPhoneInput" />
+    </view>
+    <view class="input-group">
+      <text class="input-label">验证码</text>
+      <view class="code-row">
+        <input class="code-input" type="number" placeholder="请输入 6 位验证码" value="{{code}}" bindinput="onCodeInput" />
+        <button class="get-code-btn" bindtap="getCode">获取验证码</button>
+      </view>
+    </view>
+  </view>
+
+  <button class="primary-btn" bindtap="handleNext">
+    <text>{{step === 1 ? '下一步' : '确认换绑'}}</text>
+  </button>
+</view>

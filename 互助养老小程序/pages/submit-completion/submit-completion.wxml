@@ -1,0 +1,33 @@
+<top-app-bar title="提交服务完成" showBack="{{true}}"></top-app-bar>
+
+<view class="completion-content">
+  <view class="section">
+    <text class="section-title">服务照片</text>
+    <text class="section-desc">上传服务过程中的照片（最多9张）</text>
+    <view class="photo-grid">
+      <view class="photo-item" wx:for="{{photos}}" wx:key="index">
+        <image class="photo-img" src="{{item}}" mode="aspectFill" />
+        <view class="photo-remove" data-index="{{index}}" bindtap="removePhoto">✕</view>
+      </view>
+      <view class="photo-add" wx:if="{{photos.length < 9}}" bindtap="chooseImage">
+        <text class="photo-add-icon">+</text>
+        <text class="photo-add-text">添加照片</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <text class="section-title">服务小结</text>
+    <text class="section-desc">描述服务过程和结果（选填）</text>
+    <textarea class="summary-input" placeholder="请描述本次服务的内容和结果..." value="{{summary}}" bindinput="onSummaryInput" maxlength="500" />
+    <text class="char-count">{{summary.length}}/500</text>
+  </view>
+</view>
+
+<view class="bottom-bar">
+  <view class="bottom-bar-inner">
+    <button class="submit-btn" bindtap="submitCompletion" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : '提交完成'}}
+    </button>
+  </view>
+</view>

@@ -1,0 +1,116 @@
+<top-app-bar title="互助养老"></top-app-bar>
+
+<view class="page-content">
+  <!-- Hero Greeting -->
+  <view class="hero-section">
+    <view class="hero-bg-shape"></view>
+    <view class="hero-content">
+      <text class="hero-greeting">上午好 👋</text>
+      <text class="hero-name">{{userName}}</text>
+      <view class="hero-stats-row">
+        <view class="hero-stat">
+          <text class="hero-stat-value">{{serviceCount}}</text>
+          <text class="hero-stat-label">已服务</text>
+        </view>
+        <view class="hero-stat-divider"></view>
+        <view class="hero-stat">
+          <text class="hero-stat-value">{{totalHours}}</text>
+          <text class="hero-stat-label">累计时长</text>
+        </view>
+        <view class="hero-stat-divider"></view>
+        <view class="hero-stat">
+          <text class="hero-stat-value">{{points}}</text>
+          <text class="hero-stat-label">积分</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Pending Orders -->
+  <view class="section">
+    <view class="section-head">
+      <text class="section-title">待接单提醒</text>
+      <view class="section-badge" wx:if="{{pendingTasks.length > 0}}">
+        <text class="section-badge-text">{{pendingTasks.length}} 条</text>
+      </view>
+    </view>
+
+    <block wx:if="{{pendingTasks.length > 0}}">
+      <navigator wx:for="{{pendingTasks}}" wx:key="id" url="/pages/service-detail/service-detail?id={{item.id}}" class="task-card" hover-class="task-card-hover">
+        <view class="task-card-pin"></view>
+        <view class="task-card-body">
+          <view class="task-card-top">
+            <view class="task-card-icon">
+              <image class="task-card-icon-img" src="/images/icons/volunteer.svg" mode="aspectFit" />
+            </view>
+            <view class="task-card-info">
+              <text class="task-card-title">{{item.title}}</text>
+              <text class="task-card-desc">{{item.requesterName}} · {{item.address || '待定'}}</text>
+            </view>
+          </view>
+          <view class="task-card-bottom">
+            <view class="task-card-time">
+              <image class="task-card-time-icon" src="/images/icons/schedule.svg" mode="aspectFit" />
+              <text class="task-card-time-text">{{item.time}}</text>
+            </view>
+            <view class="task-card-btn">
+              <text>去接单</text>
+              <image class="task-card-btn-icon" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </block>
+    <view wx:else class="empty-card">
+      <view class="empty-card-dot"></view>
+      <text class="empty-card-text">暂无待接单任务，休息一下吧 🌿</text>
+    </view>
+  </view>
+
+  <!-- Community Notice -->
+  <view class="section">
+    <view class="section-head">
+      <text class="section-title">社区动态</text>
+    </view>
+    <swiper class="notice-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="4000" circular="{{true}}" indicator-color="#e0d8d3" indicator-active-color="#c7511f">
+      <swiper-item>
+        <view class="notice-slide">
+          <view class="notice-slide-tape"></view>
+          <image class="notice-slide-img" src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&h=400&fit=crop" mode="aspectFill" />
+          <view class="notice-slide-overlay">
+            <text class="notice-slide-title">社区重阳节互助活动回顾</text>
+            <text class="notice-slide-desc">感谢每一位志愿者的辛勤付出</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- Bento Grid -->
+  <view class="section">
+    <view class="bento-grid">
+      <navigator url="/pages/ai-guidance/ai-guidance" class="bento-card bento-card-ai" hover-class="bento-hover">
+        <view class="bento-card-bg"></view>
+        <view class="bento-card-content">
+          <view class="bento-icon-wrap">
+            <image class="bento-icon" src="/images/icons/smart-toy.svg" mode="aspectFit" />
+          </view>
+          <text class="bento-title">AI 智能指导</text>
+          <text class="bento-desc">解答常见问题</text>
+        </view>
+      </navigator>
+
+      <navigator url="/pages/announcement/announcement" class="bento-card bento-card-announce" hover-class="bento-hover">
+        <view class="bento-card-bg"></view>
+        <view class="bento-card-content">
+          <view class="bento-icon-wrap">
+            <image class="bento-icon" src="/images/icons/campaign.svg" mode="aspectFit" />
+          </view>
+          <text class="bento-title">公告栏</text>
+          <text class="bento-desc">最新社区消息</text>
+        </view>
+      </navigator>
+
+    </view>
+  </view>
+</view>

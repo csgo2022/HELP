@@ -1,0 +1,44 @@
+<view class="page-container">
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title">添加新地址</text>
+    </view>
+  </view>
+
+  <view class="form-content">
+    <!-- Map Picker -->
+    <view class="map-picker" bindtap="onChooseLocation">
+      <view class="map-picker-icon-wrap">
+        <image class="map-picker-icon" src="/images/icons/map-pin.svg" mode="aspectFit" />
+      </view>
+      <view class="map-picker-text-wrap">
+        <text class="map-picker-label">选择位置</text>
+        <text class="map-picker-value {{detail ? '' : 'placeholder'}}">{{detail ? detail : '点击在地图上选择位置'}}</text>
+      </view>
+      <image class="map-picker-arrow" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+    </view>
+
+    <!-- Form -->
+    <view class="form-area">
+      <view class="input-group">
+        <text class="input-label">地址名称</text>
+        <view class="input-wrap">
+          <input class="input-field" type="text" placeholder="例如：我的家、儿子家" value="{{name}}" bindinput="onNameInput" />
+        </view>
+      </view>
+      <view class="input-group">
+        <text class="input-label">详细地址</text>
+        <view class="input-wrap">
+          <input class="input-field" type="text" placeholder="街道、社区、门牌号" value="{{detail}}" bindinput="onDetailInput" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <button class="save-btn" bindtap="handleSave">
+      <text>确认保存</text>
+    </button>
+  </view>
+</view>

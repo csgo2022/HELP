@@ -1,0 +1,28 @@
+<view class="page-container">
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title">修改个人信息</text>
+    </view>
+    <view class="header-spacer"></view>
+  </view>
+
+  <view class="tip-box">
+    请核对并更新您的真实信息，以便我们为您提供更好的社区服务。
+  </view>
+
+  <view class="form-area">
+    <view class="input-group">
+      <text class="input-label">真实姓名</text>
+      <input class="input-field" type="text" placeholder="请输入您的姓名" value="{{name}}" bindinput="onNameInput" />
+    </view>
+    <view class="input-group">
+      <text class="input-label">联系电话</text>
+      <input class="input-field" type="text" placeholder="请输入您的手机号" value="{{phone}}" bindinput="onPhoneInput" />
+    </view>
+  </view>
+
+  <button class="primary-btn" bindtap="handleSave">
+    <text>保存修改</text>
+  </button>
+</view>

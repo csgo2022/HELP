@@ -1,0 +1,50 @@
+<view class="page-container">
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title">实名认证</text>
+    </view>
+  </view>
+
+  <view class="auth-content">
+    <view class="auth-hero">
+      <view class="auth-icon-wrap">
+        <image class="icon-svg-xl" src="/images/icons/shield-check.svg" mode="aspectFit" style="stroke:#ff8c42;stroke-width:2;" />
+      </view>
+      <text class="auth-title">为了保障社区安全</text>
+      <text class="auth-subtitle">请上传身份证照片完成实名认证</text>
+    </view>
+
+    <view class="upload-section">
+      <view class="upload-card" bindtap="uploadFront">
+        <view class="upload-placeholder">
+          <block wx:if="{{frontImage}}">
+            <image class="upload-preview" src="{{frontImage}}" mode="aspectFill" />
+          </block>
+          <block wx:else>
+            <view class="upload-icon">📷</view>
+            <text class="upload-label">身份证正面</text>
+            <text class="upload-hint">（人像面）</text>
+          </block>
+        </view>
+      </view>
+
+      <view class="upload-card" bindtap="uploadBack">
+        <view class="upload-placeholder">
+          <block wx:if="{{backImage}}">
+            <image class="upload-preview" src="{{backImage}}" mode="aspectFill" />
+          </block>
+          <block wx:else>
+            <view class="upload-icon">📷</view>
+            <text class="upload-label">身份证反面</text>
+            <text class="upload-hint">（国徽面）</text>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <button class="submit-auth-btn" bindtap="handleSubmit" disabled="{{!frontImage || !backImage}}">
+      <text>提交认证</text>
+    </button>
+  </view>
+</view>

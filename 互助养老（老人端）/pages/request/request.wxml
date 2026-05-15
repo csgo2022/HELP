@@ -1,0 +1,138 @@
+<view class="page-container">
+  <!-- Header -->
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title">发布求助</text>
+    </view>
+    <image class="page-avatar" src="https://images.unsplash.com/photo-1551069613-1904dbdcda11?w=100&h=100&fit=crop" mode="aspectFill" />
+  </view>
+
+  <!-- Step Indicator -->
+  <view class="step-indicator">
+    <view class="step-track"></view>
+    <view class="step-item {{step >= 1 ? 'active' : ''}}">
+      <view class="step-circle {{step >= 1 ? 'active' : ''}}">1</view>
+      <text class="step-label {{step >= 1 ? 'active' : ''}}">服务</text>
+    </view>
+    <view class="step-item {{step >= 2 ? 'active' : ''}}">
+      <view class="step-circle {{step >= 2 ? 'active' : ''}}">2</view>
+      <text class="step-label {{step >= 2 ? 'active' : ''}}">内容</text>
+    </view>
+    <view class="step-item {{step >= 3 ? 'active' : ''}}">
+      <view class="step-circle {{step >= 3 ? 'active' : ''}}">3</view>
+      <text class="step-label {{step >= 3 ? 'active' : ''}}">确认</text>
+    </view>
+  </view>
+
+  <!-- Step 1: Service Type -->
+  <block wx:if="{{step === 1}}">
+    <text class="step-title">您需要哪种帮助？</text>
+    <view class="service-grid">
+      <view class="service-option" data-type="助餐服务" bindtap="selectService">
+        <view class="service-icon orange-bg">
+          <image class="icon-svg-lg" src="/images/icons/utensils.svg" mode="aspectFit" style="stroke:#f97316;stroke-width:2;" />
+        </view>
+        <text class="service-name">助餐服务</text>
+        <text class="service-desc">上门送餐、代做饭</text>
+      </view>
+      <view class="service-option" data-type="代买代办" bindtap="selectService">
+        <view class="service-icon blue-bg">
+          <image class="icon-svg-lg" src="/images/icons/shopping-bag.svg" mode="aspectFit" style="stroke:#3b82f6;stroke-width:2;" />
+        </view>
+        <text class="service-name">代买代办</text>
+        <text class="service-desc">超市采购、代缴费用</text>
+      </view>
+      <view class="service-option" data-type="就医陪诊" bindtap="selectService">
+        <view class="service-icon green-bg">
+          <image class="icon-svg-lg" src="/images/icons/briefcase-medical.svg" mode="aspectFit" style="stroke:#22c55e;stroke-width:2;" />
+        </view>
+        <text class="service-name">就医陪诊</text>
+        <text class="service-desc">陪同挂号、看病取药</text>
+      </view>
+      <view class="service-option" data-type="家居清洁" bindtap="selectService">
+        <view class="service-icon purple-bg">
+          <image class="icon-svg-lg" src="/images/icons/plus-circle.svg" mode="aspectFit" style="stroke:#a855f7;stroke-width:2;" />
+        </view>
+        <text class="service-name">家居清洁</text>
+        <text class="service-desc">打扫卫生、衣物洗涤</text>
+      </view>
+      <view class="service-option" data-type="康复辅助" bindtap="selectService">
+        <view class="service-icon red-bg">
+          <image class="icon-svg-lg" src="/images/icons/activity.svg" mode="aspectFit" style="stroke:#ef4444;stroke-width:2;" />
+        </view>
+        <text class="service-name">康复辅助</text>
+        <text class="service-desc">康复训练、辅助行走</text>
+      </view>
+      <view class="service-option" data-type="心理疏导" bindtap="selectService">
+        <view class="service-icon pink-bg">
+          <image class="icon-svg-lg" src="/images/icons/heart-handshake.svg" mode="aspectFit" style="stroke:#ec4899;stroke-width:2;" />
+        </view>
+        <text class="service-name">心理疏导</text>
+        <text class="service-desc">倾听交流、心情排解</text>
+      </view>
+      <view class="service-option" data-type="其他需求" bindtap="selectService">
+        <view class="service-icon gray-bg">
+          <image class="icon-svg-lg" src="/images/icons/more-horizontal.svg" mode="aspectFit" style="stroke:#71717a;stroke-width:2;" />
+        </view>
+        <text class="service-name">其他需求</text>
+        <text class="service-desc">上述未涵盖的其他帮助</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- Step 2: Details -->
+  <block wx:if="{{step === 2}}">
+    <text class="step-title">补充服务细节</text>
+    <view class="detail-form">
+      <view class="detail-group">
+        <text class="detail-label">备注说明</text>
+        <textarea class="detail-textarea" placeholder="请详细描述您的需求（例如：想吃蒸鱼、需要轮椅等）" value="{{remark}}" bindinput="onRemarkInput" maxlength="-1" />
+      </view>
+      <view class="detail-group">
+        <text class="detail-label">服务地址</text>
+        <view class="detail-picker" bindtap="onAddressPicker">
+          <text class="{{address ? 'picker-text' : 'picker-placeholder'}}">{{address || '请选择服务地址'}}</text>
+          <image class="picker-arrow" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+        </view>
+      </view>
+      <view class="detail-group">
+        <text class="detail-label">预约时间</text>
+        <picker mode="date" value="{{appointmentDate}}" start="{{today}}" bindchange="onDateChange">
+          <view class="detail-picker">{{appointmentDate || '请选择日期'}}</view>
+        </picker>
+        <picker mode="time" value="{{appointmentTime}}" bindchange="onTimeChange">
+          <view class="detail-picker">{{appointmentTime || '请选择时间'}}</view>
+        </picker>
+      </view>
+      <view class="detail-group">
+        <text class="detail-label">预计时长 (小时)</text>
+        <view class="duration-row">
+          <input class="duration-input" type="number" placeholder="请输入" value="{{duration}}" bindinput="onDurationInput" />
+          <text class="duration-unit">小时</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- Step 3: Confirm -->
+  <block wx:if="{{step === 3}}">
+    <view class="confirm-section">
+      <view class="confirm-icon-wrap">
+        <text class="confirm-icon">✓</text>
+      </view>
+      <text class="confirm-title">信息已确认</text>
+      <text class="confirm-desc">点击下方按钮发布，志愿者将很快看到您的需求。</text>
+    </view>
+  </block>
+
+  <!-- Bottom Buttons -->
+  <view class="step-actions">
+    <block wx:if="{{step > 1}}">
+      <button class="prev-btn" bindtap="prevStep">上一步</button>
+    </block>
+    <button class="next-btn {{step > 1 ? 'flex-2' : 'full'}}" bindtap="nextStep">
+      <text>{{step === 3 ? '确认发布' : '下一步'}}</text>
+    </button>
+  </view>
+</view>

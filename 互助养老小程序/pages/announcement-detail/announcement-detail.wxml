@@ -1,0 +1,17 @@
+<top-app-bar title="公告详情" showBack="{{true}}"></top-app-bar>
+
+<view class="adetail-content">
+  <article class="adetail-article">
+    <view class="adetail-header">
+      <view class="adetail-meta-row">
+        <view class="adetail-category">{{detail.category}}</view>
+        <text class="adetail-date">{{detail.date}}</text>
+      </view>
+      <text class="adetail-title">{{detail.title}}</text>
+    </view>
+
+    <view class="adetail-body">
+      <rich-text nodes="{{detail.content}}"></rich-text>
+    </view>
+  </article>
+</view>

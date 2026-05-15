@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>点餐小程序 - 原型</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f0f0f0; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif; padding: 20px; }
+  h1 { text-align: center; margin-bottom: 30px; color: #333; font-size: 24px; }
+  h2 { text-align: center; margin: 40px 0 20px; color: #555; font-size: 18px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+  .container { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; }
+  .phone { width: 375px; min-height: 720px; background: #f8f8f8; border-radius: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); overflow: hidden; position: relative; border: 3px solid #333; }
+  .phone-header { background: #fff; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; }
+  .phone-header .time { font-weight: 600; font-size: 14px; }
+  .phone-header .icons { display: flex; gap: 6px; }
+  .status-bar { height: 44px; background: linear-gradient(135deg, #ff6b35, #ff8f00); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; font-weight: 600; }
+  .status-bar.green { background: linear-gradient(135deg, #43a047, #66bb6a); }
+  .status-bar.blue { background: linear-gradient(135deg, #1976d2, #42a5f5); }
+  .status-bar.grey { background: linear-gradient(135deg, #555, #777); }
+  .page-label { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: #ff6b35; color: #fff; padding: 2px 12px; border-radius: 10px; font-size: 12px; }
+
+  /* Home page */
+  .search-bar { margin: 10px 16px; background: #fff; border-radius: 20px; padding: 10px 16px; display: flex; align-items: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .search-bar span { color: #999; font-size: 14px; margin-left: 8px; }
+  .home-categories { display: flex; padding: 0 16px; gap: 0; overflow-x: auto; border-bottom: 1px solid #eee; background: #fff; }
+  .home-categories .cat { padding: 10px 16px; font-size: 14px; color: #666; white-space: nowrap; border-bottom: 2px solid transparent; }
+  .home-categories .cat.active { color: #ff6b35; border-bottom-color: #ff6b35; font-weight: 600; }
+  .dish-item { display: flex; padding: 14px 16px; background: #fff; margin: 1px 0; gap: 12px; align-items: center; }
+  .dish-item .img { width: 80px; height: 80px; border-radius: 8px; background: linear-gradient(135deg, #ffe0b2, #ffcc80); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #e65100; font-size: 11px; text-align: center; }
+  .dish-info { flex: 1; }
+  .dish-info .name { font-size: 15px; font-weight: 600; color: #333; }
+  .dish-info .desc { font-size: 12px; color: #999; margin-top: 4px; }
+  .dish-info .sales { font-size: 11px; color: #bbb; margin-top: 2px; }
+  .dish-info .price { font-size: 16px; color: #ff6b35; font-weight: 700; margin-top: 6px; }
+  .dish-info .price small { font-size: 12px; }
+  .add-btn { width: 26px; height: 26px; border-radius: 50%; background: #ff6b35; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; flex-shrink: 0; }
+  .cart-bar { background: #333; color: #fff; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-radius: 30px; margin: 10px 16px; position: sticky; bottom: 10px; }
+  .cart-bar .total { font-size: 14px; }
+  .cart-bar .total strong { font-size: 18px; }
+  .cart-bar .btn { background: #ff6b35; padding: 8px 20px; border-radius: 20px; font-size: 14px; }
+
+  /* Detail page */
+  .detail-img { width: 100%; height: 260px; background: linear-gradient(135deg, #ffe0b2, #ffcc80); display: flex; align-items: center; justify-content: center; color: #e65100; font-size: 14px; }
+  .detail-body { padding: 16px; background: #fff; }
+  .detail-body .name { font-size: 20px; font-weight: 700; }
+  .detail-body .price-big { font-size: 24px; color: #ff6b35; font-weight: 700; margin-top: 8px; }
+  .detail-body .price-big small { font-size: 14px; }
+  .detail-body .desc { margin-top: 12px; color: #666; font-size: 14px; line-height: 1.6; }
+  .detail-body .label { font-size: 13px; color: #333; font-weight: 600; margin-top: 16px; }
+  .specs { display: flex; gap: 8px; margin-top: 8px; }
+  .spec-item { padding: 6px 14px; border: 1px solid #ddd; border-radius: 16px; font-size: 13px; color: #666; }
+  .spec-item.active { border-color: #ff6b35; color: #ff6b35; background: #fff3e0; }
+  .detail-bottom { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #fff; border-top: 1px solid #eee; }
+  .detail-bottom .add-cart { background: #ff6b35; color: #fff; padding: 10px 36px; border-radius: 24px; font-size: 15px; }
+
+  /* Cart page */
+  .cart-item { display: flex; padding: 14px 16px; background: #fff; margin: 1px 0; align-items: center; gap: 12px; }
+  .cart-item .c-name { flex: 1; font-size: 15px; }
+  .cart-item .c-price { color: #ff6b35; font-weight: 600; font-size: 15px; min-width: 70px; }
+  .cart-item .qty { display: flex; align-items: center; gap: 10px; }
+  .cart-item .qty-btn { width: 24px; height: 24px; border-radius: 50%; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; }
+  .cart-item .qty-num { font-size: 15px; min-width: 20px; text-align: center; }
+  .cart-total { background: #fff; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; margin-top: 10px; }
+  .cart-total .amount { font-size: 14px; color: #666; }
+  .cart-total .amount strong { font-size: 22px; color: #ff6b35; }
+  .cart-total .checkout { background: #ff6b35; color: #fff; padding: 10px 32px; border-radius: 24px; font-size: 15px; }
+
+  /* Order confirm */
+  .confirm-addr { background: #fff; padding: 14px 16px; margin-bottom: 8px; }
+  .confirm-addr .label { font-size: 12px; color: #999; }
+  .confirm-addr .text { font-size: 14px; margin-top: 4px; }
+  .confirm-item { display: flex; padding: 10px 16px; background: #fff; justify-content: space-between; }
+  .confirm-item .ci-left { display: flex; gap: 8px; font-size: 14px; }
+  .confirm-item .ci-price { font-size: 14px; }
+  .confirm-remark { background: #fff; padding: 14px 16px; margin-top: 8px; }
+  .confirm-remark input { width: 100%; border: none; outline: none; font-size: 14px; color: #666; padding: 8px 0; border-bottom: 1px solid #eee; }
+  .fee-line { display: flex; justify-content: space-between; padding: 8px 16px; background: #fff; font-size: 13px; color: #666; }
+  .submit-bar { background: #fff; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; position: sticky; bottom: 0; }
+  .submit-bar .total-amount { font-size: 14px; }
+  .submit-bar .total-amount strong { font-size: 20px; color: #ff6b35; }
+  .submit-bar .pay-btn { background: #ff6b35; color: #fff; padding: 10px 40px; border-radius: 24px; font-size: 15px; }
+
+  /* Order list */
+  .order-tabs { display: flex; background: #fff; border-bottom: 1px solid #eee; }
+  .order-tabs .tab { flex: 1; text-align: center; padding: 12px 0; font-size: 13px; color: #666; border-bottom: 2px solid transparent; }
+  .order-tabs .tab.active { color: #ff6b35; border-bottom-color: #ff6b35; font-weight: 600; }
+  .order-card { background: #fff; margin: 8px 16px; border-radius: 8px; padding: 14px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .order-card .oc-header { display: flex; justify-content: space-between; font-size: 12px; color: #999; }
+  .order-card .oc-status { color: #ff6b35; font-weight: 600; }
+  .order-card .oc-items { margin-top: 8px; font-size: 13px; color: #333; }
+  .order-card .oc-footer { margin-top: 8px; display: flex; justify-content: space-between; align-items: center; }
+  .order-card .oc-amount { font-size: 14px; color: #333; }
+  .order-card .oc-amount strong { color: #ff6b35; }
+  .order-card .oc-btn { padding: 4px 16px; border: 1px solid #ff6b35; border-radius: 16px; color: #ff6b35; font-size: 12px; }
+
+  /* Order detail */
+  .od-status-card { background: #ff6b35; padding: 30px 20px; color: #fff; text-align: center; }
+  .od-status-card .status-icon { font-size: 40px; margin-bottom: 8px; }
+  .od-status-card .status-text { font-size: 18px; font-weight: 600; }
+  .od-status-card .status-hint { font-size: 13px; margin-top: 6px; opacity: 0.8; }
+  .od-info { background: #fff; padding: 14px 16px; margin-top: 8px; }
+  .od-info .row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; color: #666; }
+  .od-items { background: #fff; padding: 14px 16px; margin-top: 8px; }
+  .od-items .item { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; }
+  .od-items .item .left { color: #333; }
+  .od-items .item .right { color: #666; }
+
+  /* User page */
+  .user-header { background: linear-gradient(135deg, #ff6b35, #ff8f00); padding: 30px 20px; text-align: center; color: #fff; }
+  .user-header .avatar { width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,0.3); margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+  .user-header .nickname { font-size: 18px; font-weight: 600; }
+  .user-menu { background: #fff; margin-top: 8px; }
+  .user-menu .menu-item { display: flex; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid #f5f5f5; font-size: 15px; color: #333; }
+  .user-menu .menu-item .arrow { color: #ccc; }
+
+  .page-marker { position: relative; margin-bottom: 50px; }
+
+  .status-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+  .status-badge.pending { background: #fff3e0; color: #e65100; }
+  .status-badge.done { background: #e8f5e9; color: #2e7d32; }
+  .status-badge.cooking { background: #e3f2fd; color: #1565c0; }
+</style>
+</head>
+<body>
+<h1>📱 点餐小程序 — 页面原型</h1>
+<p style="text-align:center;color:#888;margin-bottom:30px;">7 个核心页面 | 顾客端 | 中餐/快餐场景</p>
+
+<h2>1. 首页 — 菜品浏览</h2>
+<div class="container">
+  <div class="phone" style="margin-top:30px;">
+    <div class="page-label">首页</div>
+    <div class="status-bar">📱 点餐</div>
+    <div class="search-bar">🔍 <span>搜索菜品...</span></div>
+    <div class="home-categories">
+      <div class="cat active">🔥 热菜</div>
+      <div class="cat">🥗 凉菜</div>
+      <div class="cat">🍚 主食</div>
+      <div class="cat">🥣 汤品</div>
+      <div class="cat">🥤 饮品</div>
+    </div>
+    <div class="dish-item">
+      <div class="img">菜品<br>图片</div>
+      <div class="dish-info">
+        <div class="name">宫保鸡丁</div>
+        <div class="desc">经典川菜，麻辣鲜香</div>
+        <div class="sales">月售 128份</div>
+        <div class="price">¥<strong>32</strong><small>.00</small></div>
+      </div>
+      <div class="add-btn">+</div>
+    </div>
+    <div class="dish-item">
+      <div class="img" style="background:linear-gradient(135deg,#c8e6c9,#a5d6a7);color:#2e7d32;">菜品<br>图片</div>
+      <div class="dish-info">
+        <div class="name">鱼香肉丝</div>
+        <div class="desc">酸甜微辣，下饭必备</div>
+        <div class="sales">月售 96份</div>
+        <div class="price">¥<strong>28</strong><small>.00</small></div>
+      </div>
+      <div class="add-btn">+</div>
+    </div>
+    <div class="dish-item">
+      <div class="img" style="background:linear-gradient(135deg,#ffcdd2,#ef9a9a);color:#c62828;">菜品<br>图片</div>
+      <div class="dish-info">
+        <div class="name">水煮牛肉</div>
+        <div class="desc">麻辣鲜嫩，招牌推荐</div>
+        <div class="sales">月售 73份</div>
+        <div class="price">¥<strong>45</strong><small>.00</small></div>
+      </div>
+      <div class="add-btn">+</div>
+    </div>
+    <div class="dish-item">
+      <div class="img" style="background:linear-gradient(135deg,#fff9c4,#fff176);color:#f57f17;">菜品<br>图片</div>
+      <div class="dish-info">
+        <div class="name">麻婆豆腐</div>
+        <div class="desc">麻辣鲜香，软嫩可口</div>
+        <div class="sales">月售 65份</div>
+        <div class="price">¥<strong>22</strong><small>.00</small></div>
+      </div>
+      <div class="add-btn">+</div>
+    </div>
+    <div class="cart-bar">
+      <div class="total">🛒 <strong>¥67.00</strong></div>
+      <div class="btn">去结算 (3件)</div>
+    </div>
+  </div>
+</div>
+
+<h2>2. 菜品详情页</h2>
+<div class="container">
+  <div class="phone" style="margin-top:30px;">
+    <div class="page-label">详情页</div>
+    <div class="status-bar">菜品详情</div>
+    <div class="detail-img">🍗 菜品大图</div>
+    <div class="detail-body">
+      <div class="name">宫保鸡丁</div>
+      <div class="price-big">¥<strong>32</strong><small>.00</small></div>
+      <div class="label">菜品描述</div>
+      <div class="desc">精选鸡胸肉搭配花生米、干辣椒，以独特酱汁爆炒而成。色泽红亮，鸡肉滑嫩，花生酥脆，麻辣鲜香层次丰富，是深受欢迎的经典川菜。</div>
+      <div class="label">选择规格</div>
+      <div class="specs">
+        <div class="spec-item active">标准份</div>
+        <div class="spec-item">大份 (+¥8)</div>
+      </div>
+      <div class="label">口味备注</div>
+      <div class="specs" style="margin-bottom:16px;">
+        <div class="spec-item">微辣</div>
+        <div class="spec-item active">中辣</div>
+        <div class="spec-item">特辣</div>
+        <div class="spec-item">不辣</div>
+      </div>
+    </div>
+    <div class="detail-bottom">
+      <div>¥<strong style="font-size:22px;color:#ff6b35;">32</strong>.00</div>
+      <div class="add-cart">加入购物车</div>
+    </div>
+  </div>
+</div>
+
+<h2>3. 购物车</h2>
+<div class="container">
+  <div class="phone" style="margin-top:30px;">
+    <div class="page-label">购物车</div>
+    <div class="status-bar">🛒 购物车</div>
+    <div class="cart-item">
+      <span style="color:#ff6b35;font-size:16px;">●</span>
+      <div class="c-name">宫保鸡丁</div>
+      <div class="c-price">¥32.00</div>
+      <div class="qty">
+        <div class="qty-btn">−</div>
+        <div class="qty-num">2</div>
+        <div class="qty-btn">+</div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <span style="color:#ff6b35;font-size:16px;">●</span>
+      <div class="c-name">米饭</div>
+      <div class="c-price">¥3.00</div>
+      <div class="qty">
+        <div class="qty-btn">−</div>
+        <div class="qty-num">1</div>
+        <div class="qty-btn">+</div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <span style="color:#ff6b35;font-size:16px;">●</span>
+      <div class="c-name">酸梅汤</div>
+      <div class="c-price">¥8.00</div>
+      <div class="qty">
+        <div class="qty-btn">−</div>
+        <div class="qty-num">1</div>
+        <div class="qty-btn">+</div>
+      </div>
+    </div>
+    <div class="cart-total">
+      <div class="amount">合计: <strong>¥75.00</strong></div>
+      <div class="checkout">去结算</div>
+    </div>
+  </div>
+</div>
+
+<h2>4. 确认订单</h2>
+<div class="container">
+  <div class="phone" style="margin-top:30px;">
+    <div class="page-label">确认订单</div>
+    <div class="status-bar green">📋 确认订单</div>
+    <div class="confirm-addr">
+      <div class="label">就餐方式</div>
+      <div class="text">📌 堂食 · 2位</div>
+    </div>
+    <div class="confirm-item">
+      <div class="ci-left"><span>宫保鸡丁</span><span style="color:#999;">×2</span></div>
+      <div class="ci-price">¥64.00</div>
+    </div>
+    <div class="confirm-item">
+      <div class="ci-left"><span>米饭</span><span style="color:#999;">×1</span></div>
+      <div class="ci-price">¥3.00</div>
+    </div>
+    <div class="confirm-item">
+      <div class="ci-left"><span>酸梅汤</span><span style="color:#999;">×1</span></div>
+      <div class="ci-price">¥8.00</div>
+    </div>
+    <div class="confirm-remark">
+      <input type="text" placeholder="添加备注（如：少辣、加急等）">
+    </div>
+    <div class="fee-line">
+      <span>菜品小计</span><span>¥75.00</span>
+    </div>
+    <div class="fee-line">
+      <span>打包费</span><span>¥0.00</span>
+    </div>
+    <div style="height:60px;"></div>
+    <div class="submit-bar">
+      <div class="total-amount">合计: <strong>¥75.00</strong></div>
+      <div class="pay-btn">去支付</div>
+    </div>
+  </div>
+</div>
+
+<h2>5. 订单列表</h2>
+<div class="container">
+  <div class="phone" style="margin-top:30px;">
+    <div class="page-label">订单列表</div>
+    <div class="status-bar">📋 我的订单</div>
+    <div class="order-tabs">
+      <div class="tab active">全部</div>
+      <div class="tab">待支付</div>
+      <div class="tab">制作中</div>
+      <div class="tab">已完成</div>
+    </div>
+    <div class="order-card">
+      <div class="oc-header">
+        <span>单号: 20260515001</span>
+        <span class="oc-status status-badge.cooking" style="color:#1565c0;">制作中</span>
+      </div>
+      <div class="oc-items">宫保鸡丁 ×2、米饭 ×1、酸梅汤 ×1</div>
+      <div class="oc-footer">
+        <div class="oc-amount">实付: <strong>¥75.00</strong></div>
+      </div>
+    </div>
+    <div class="order-card">
+      <div class="oc-header">
+        <span>单号: 20260514002</span>
+        <span class="oc-status" style="color:#e65100;">待支付</span>
+      </div>
+      <div class="oc-items">鱼香肉丝 ×1、米饭 ×1</div>
+      <div class="oc-footer">
+        <div class="oc-amount">实付: <strong>¥31.00</strong></div>
+        <div class="oc-btn">去支付</div>
+      </div>
+    </div>
+    <div class="order-card">
+      <div class="oc-header">
+        <span>单号: 20260513003</span>
+        <span class="oc-status" style="color:#2e7d32;">已完成</span>
+      </div>
+      <div class="oc-items">水煮牛肉 ×1、米饭 ×2</div>
+      <div class="oc-footer">
+        <div class="oc-amount">实付: <strong>¥51.00</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>6. 订单详情</h2>
+<div class="container">
+  <div class="phone" style="margin-top:30px;">
+    <div class="page-label">订单详情</div>
+    <div class="od-status-card" style="background:linear-gradient(135deg,#43a047,#66bb6a);">
+      <div class="status-icon">✅</div>
+      <div class="status-text">已完成</div>
+      <div class="status-hint">感谢您的用餐，欢迎再次光临</div>
+    </div>
+    <div class="od-info">
+      <div class="row"><span>订单编号</span><span>20260515001</span></div>
+      <div class="row"><span>下单时间</span><span>2026-05-15 12:30</span></div>
+      <div class="row"><span>支付时间</span><span>2026-05-15 12:31</span></div>
+      <div class="row"><span>就餐方式</span><span>堂食</span></div>
+    </div>
+    <div class="od-items">
+      <div class="item"><span class="left">宫保鸡丁 ×2</span><span class="right">¥64.00</span></div>
+      <div class="item"><span class="left">米饭 ×1</span><span class="right">¥3.00</span></div>
+      <div class="item"><span class="left">酸梅汤 ×1</span><span class="right">¥8.00</span></div>
+      <div class="item" style="border-top:1px solid #eee;padding-top:10px;margin-top:6px;">
+        <span class="left" style="font-weight:600;">实付</span>
+        <span class="right" style="color:#ff6b35;font-weight:700;font-size:16px;">¥75.00</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>7. 个人中心</h2>
+<div class="container">
+  <div class="phone" style="margin-top:30px;">
+    <div class="page-label">个人中心</div>
+    <div class="user-header">
+      <div class="avatar">👤</div>
+      <div class="nickname">微信用户</div>
+      <div style="font-size:12px;opacity:0.8;margin-top:4px;">微信号登录</div>
+    </div>
+    <div class="user-menu">
+      <div class="menu-item"><span>📋 我的订单</span><span class="arrow">›</span></div>
+      <div class="menu-item"><span>⭐ 我的收藏</span><span class="arrow">›</span></div>
+      <div class="menu-item"><span>📍 我的地址</span><span class="arrow">›</span></div>
+      <div class="menu-item" style="border:none;"><span>⚙️ 设置</span><span class="arrow">›</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center;margin:40px 0 60px;color:#999;font-size:13px;">
+  📱 点餐小程序（顾客端）— 原型设计 v1.0 | 2026-05-15
+</div>
+</body>
+</html>

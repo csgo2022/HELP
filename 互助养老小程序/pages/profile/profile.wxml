@@ -1,0 +1,149 @@
+<top-app-bar title="我的"></top-app-bar>
+
+<view class="page-content">
+  <!-- Profile Card -->
+  <view class="profile-card">
+    <view class="profile-card-bg"></view>
+    <view class="profile-card-inner">
+      <!-- Avatar with decorative frame -->
+      <view class="profile-avatar-section">
+        <view class="profile-avatar-frame">
+          <view class="profile-avatar-border"></view>
+          <image class="profile-avatar-img" src="{{avatar || '/images/icons/person.svg'}}" mode="aspectFill" />
+        </view>
+        <view class="profile-avatar-badge">
+          <image class="profile-avatar-badge-icon" src="/images/icons/verified.svg" mode="aspectFit" />
+        </view>
+       
+      </view>
+
+      <!-- User info -->
+      <view class="profile-info-section">
+        <view class="profile-name-row">
+          <text class="profile-name">{{userName}}</text>
+          <view class="profile-level">{{level}}</view>
+        </view>
+        <text class="profile-motto">用心服务，成就他人</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Achievement Row -->
+  <view class="achievement-row">
+    <navigator url="/pages/leaderboard/leaderboard" class="achievement-item">
+      <view class="achievement-icon-wrap" style="background: rgba(199,81,31,0.12);">
+        <image class="achievement-icon" src="/images/icons/crown.svg" mode="aspectFit" />
+      </view>
+      <text class="achievement-value">{{rank || '—'}}</text>
+      <text class="achievement-label">志愿榜</text>
+    </navigator>
+    <view class="achievement-divider"></view>
+    <view class="achievement-item">
+      <view class="achievement-icon-wrap" style="background: rgba(58,125,76,0.12);">
+        <image class="achievement-icon" src="/images/icons/stars.svg" mode="aspectFit" />
+      </view>
+      <text class="achievement-value">{{totalHours || '0h'}}</text>
+      <text class="achievement-label">累积时长</text>
+    </view>
+    <view class="achievement-divider"></view>
+    <view class="achievement-item">
+      <view class="achievement-icon-wrap" style="background: rgba(212,160,67,0.12);">
+        <image class="achievement-icon" src="/images/icons/badge.svg" mode="aspectFit" />
+      </view>
+      <text class="achievement-value">{{serviceCount}}</text>
+      <text class="achievement-label">已服务</text>
+    </view>
+  </view>
+
+  <!-- Menu Section -->
+  <view class="menu-section">
+    <navigator url="/pages/user-info/user-info" class="menu-item" hover-class="menu-hover">
+      <view class="menu-item-left">
+        <view class="menu-icon" style="background: rgba(199,81,31,0.1);">
+          <image class="menu-icon-img" src="/images/icons/person.svg" mode="aspectFit" />
+        </view>
+        <view class="menu-text">
+          <text class="menu-title">个人资料</text>
+          <text class="menu-sub">查看及编辑信息</text>
+        </view>
+      </view>
+      <image class="menu-arrow" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+    </navigator>
+
+    <navigator url="/pages/address/address" class="menu-item" hover-class="menu-hover">
+      <view class="menu-item-left">
+        <view class="menu-icon" style="background: rgba(212,160,67,0.1);">
+          <image class="menu-icon-img" src="/images/icons/location.svg" mode="aspectFit" />
+        </view>
+        <view class="menu-text">
+          <text class="menu-title">地址管理</text>
+          <text class="menu-sub">管理常用服务地址</text>
+        </view>
+      </view>
+      <image class="menu-arrow" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+    </navigator>
+
+    <navigator url="/pages/point-mall/point-mall" class="menu-item" hover-class="menu-hover">
+      <view class="menu-item-left">
+        <view class="menu-icon" style="background: rgba(232,184,75,0.1);">
+          <image class="menu-icon-img" src="/images/icons/redeem.svg" mode="aspectFit" />
+        </view>
+        <view class="menu-text">
+          <text class="menu-title">积分商城</text>
+          <text class="menu-sub">多种好礼等您兑换</text>
+        </view>
+      </view>
+      <image class="menu-arrow" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+    </navigator>
+
+    <navigator url="/pages/orders/orders" class="menu-item" hover-class="menu-hover">
+      <view class="menu-item-left">
+        <view class="menu-icon" style="background: rgba(124,92,191,0.1);">
+          <image class="menu-icon-img" src="/images/icons/shipping.svg" mode="aspectFit" />
+        </view>
+        <view class="menu-text">
+          <text class="menu-title">我的订单</text>
+          <text class="menu-sub">兑换礼品物流进度</text>
+        </view>
+      </view>
+      <image class="menu-arrow" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+    </navigator>
+
+    <navigator url="/pages/skills/skills" class="menu-item" hover-class="menu-hover">
+      <view class="menu-item-left">
+        <view class="menu-icon" style="background: rgba(58,125,76,0.1);">
+          <image class="menu-icon-img" src="/images/icons/edit.svg" mode="aspectFit" />
+        </view>
+        <view class="menu-text">
+          <text class="menu-title">个人技能编辑</text>
+          <text class="menu-sub">更新专业擅长</text>
+        </view>
+      </view>
+      <image class="menu-arrow" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+    </navigator>
+
+    <navigator url="/pages/change-password/change-password" class="menu-item" hover-class="menu-hover">
+      <view class="menu-item-left">
+        <view class="menu-icon" style="background: rgba(199,81,31,0.1);">
+          <image class="menu-icon-img" src="/images/icons/lock.svg" mode="aspectFit" />
+        </view>
+        <view class="menu-text">
+          <text class="menu-title">账号与安全</text>
+          <text class="menu-sub">修改登录密码</text>
+        </view>
+      </view>
+      <image class="menu-arrow" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+    </navigator>
+  </view>
+
+  <!-- Logout -->
+  <view class="logout-btn" bindtap="onLogout">
+    <image class="logout-icon" src="/images/icons/logout.svg" mode="aspectFit" />
+    <text>退出登录</text>
+  </view>
+
+  <view class="logout-btn" bindtap="onDeleteAccount" style="margin-top: 16rpx;">
+    <image class="logout-icon" src="/images/icons/logout.svg" mode="aspectFit" />
+    <text>注销账号</text>
+  </view>
+</view>

@@ -1,0 +1,47 @@
+<view class="page-container">
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title">{{selectMode ? '选择地址' : '常用服务地址'}}</text>
+    </view>
+  </view>
+
+  <view class="tip-text" wx:if="{{!selectMode}}">
+    管理您的常用服务地址，预约时快速选择
+  </view>
+
+  <view class="address-list">
+    <view class="address-card" wx:for="{{addressList}}" wx:key="id" data-item="{{item}}" bindtap="onSelectAddress">
+      <view class="card-left-bar"></view>
+      <view class="card-body">
+        <view class="card-top">
+          <view class="card-title-row">
+            <text class="card-name">{{item.name || '地址'}}</text>
+            <image wx:if="{{selectMode}}" class="select-check" src="/images/icons/check-circle.svg" mode="aspectFit" />
+          </view>
+          <text class="card-address">{{item.address || ''}}</text>
+        </view>
+        <view wx:if="{{!selectMode}}" class="card-actions">
+          <button class="action-btn delete-btn" bindtap="onDeleteAddress" data-id="{{item.id}}" data-name="{{item.name}}" catchtap>
+            <image class="action-icon" src="/images/icons/trash-2.svg" mode="aspectFit" /> 删除
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <!-- Empty State -->
+    <view class="empty-state" wx:if="{{addressList.length === 0}}">
+      <view class="empty-icon-wrap">
+        <image class="empty-icon" src="/images/icons/map-pin.svg" mode="aspectFit" />
+      </view>
+      <text class="empty-title">暂无地址</text>
+      <text class="empty-desc">点击下方按钮添加您的常用地址</text>
+    </view>
+  </view>
+
+  <view class="bottom-bar">
+    <button class="add-btn" bindtap="goAddAddress">
+      <image class="add-btn-icon" src="/images/icons/plus.svg" mode="aspectFit" /> 添加新地址
+    </button>
+  </view>
+</view>

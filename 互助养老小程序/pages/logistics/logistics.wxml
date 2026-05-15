@@ -1,0 +1,88 @@
+<top-app-bar title="物流详情" showBack="{{true}}"></top-app-bar>
+
+<view class="logistics-content" wx:if="{{logisticsData}}">
+  <!-- Package Header -->
+  <view class="package-card">
+    <view class="package-header">
+      <view class="package-icon-wrap">
+        <image class="package-icon" src="/images/icons/package.svg" mode="aspectFit" />
+      </view>
+      <view class="package-info">
+        <text class="courier-name">{{logisticsData.courier}}</text>
+        <text class="courier-id">运单号：{{logisticsData.courierId}}</text>
+      </view>
+    </view>
+    <view class="package-status" wx:if="{{logisticsData.status}}">
+      <view class="package-status-dot"></view>
+      <text class="package-status-text">{{logisticsData.status}}</text>
+    </view>
+  </view>
+
+  <!-- Route Info -->
+  <view class="route-card" wx:if="{{logisticsData.trailUrl}}">
+    <view class="route-header">
+      <text class="route-title">运输路线</text>
+      <view class="route-map-btn" bindtap="openTrailUrl">
+        <image class="route-map-icon" src="/images/icons/map-outline.svg" mode="aspectFit" />
+        <text class="route-map-text">查看地图</text>
+      </view>
+    </view>
+    <view class="route-body">
+      <view class="route-node">
+        <view class="route-dot route-dot-start"></view>
+        <text class="route-city">{{logisticsData.routeFrom || '未知'}}</text>
+      </view>
+      <view class="route-line"></view>
+      <view class="route-node">
+        <view class="route-dot route-dot-cur"></view>
+        <text class="route-city route-city-cur">{{logisticsData.routeCur || '运输中'}}</text>
+      </view>
+      <view class="route-line"></view>
+      <view class="route-node">
+        <view class="route-dot route-dot-end"></view>
+        <text class="route-city">{{logisticsData.routeTo || logisticsData.address || '未知'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Timeline -->
+  <view class="timeline-card" wx:if="{{logisticsData.events && logisticsData.events.length > 0}}">
+    <view class="timeline-title">物流动态</view>
+    <view class="timeline">
+      <view class="timeline-item" wx:for="{{logisticsData.events}}" wx:key="index">
+        <view class="timeline-node-col">
+          <view class="timeline-line {{index === 0 ? 'timeline-line-hidden' : ''}}"></view>
+          <view class="timeline-node {{item.isLatest ? 'timeline-node-latest' : ''}}"></view>
+          <view class="timeline-line {{index === logisticsData.events.length - 1 ? 'timeline-line-hidden' : ''}}"></view>
+        </view>
+        <view class="timeline-content">
+          <view class="timeline-status-row">
+            <image class="timeline-event-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
+            <text class="timeline-status {{item.isLatest ? 'timeline-status-latest' : ''}}">{{item.status}}</text>
+          </view>
+          <text class="timeline-desc">{{item.description}}</text>
+          <text class="timeline-time">{{item.time}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Shipping Address -->
+  <view class="address-card" wx:if="{{logisticsData.address}}">
+    <image class="address-icon" src="/images/icons/location.svg" mode="aspectFit" />
+    <view class="address-info">
+      <text class="address-label">收货地址</text>
+      <text class="address-text">{{logisticsData.address}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- Loading -->
+<view class="loading-state" wx:if="{{loading}}">
+  <text class="loading-text">加载中...</text>
+</view>
+
+<!-- Error -->
+<view class="error-state" wx:elif="{{error}}">
+  <text class="error-text">{{error}}</text>
+</view>

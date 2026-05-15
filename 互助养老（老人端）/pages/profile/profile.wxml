@@ -1,0 +1,82 @@
+<view class="page-container">
+  <!-- Header -->
+  <view class="page-header">
+    <text class="page-title">个人中心</text>
+  </view>
+
+  <!-- User Info Card -->
+  <view class="user-card">
+    <view class="user-avatar-wrap">
+      <image class="user-avatar" src="{{avatar || 'https://images.unsplash.com/photo-1551069613-1904dbdcda11?w=200&h=200&fit=crop'}}" mode="aspectFill" />
+      <view class="verified-badge"><image class="icon-svg-sm" src="/images/icons/check-circle.svg" mode="aspectFit" style="stroke:#fff;stroke-width:2;" /></view>
+    </view>
+    <view class="user-info">
+      <text class="user-name">{{userName}}</text>
+      <text class="user-days">已在平台生活 {{days}} 天</text>
+      <view class="points-badge">⭐ {{points}} 积分</view>
+    </view>
+  </view>
+
+  <!-- Menu Items -->
+  <view class="menu-section">
+    <view class="menu-btn" bindtap="goRecords">
+      <view class="menu-btn-left">
+        <view class="menu-icon-wrap">
+          <image class="icon-svg-lg" src="/images/icons/history.svg" mode="aspectFit" style="stroke:var(--color-primary-container);" />
+        </view>
+        <view class="menu-text-wrap">
+          <text class="menu-label">历史服务记录</text>
+          <text class="menu-sublabel">查看您的过往互助历史</text>
+        </view>
+      </view>
+      <text class="menu-arrow">▶</text>
+    </view>
+
+    <!-- Bind Family -->
+    <view class="bind-family-card">
+      <view class="bind-content">
+        <text class="bind-title">绑定家属手机号</text>
+        <text class="bind-desc">让子女实时了解您的生活动态，关键时刻能快速联系。</text>
+        <button class="bind-btn" bindtap="goBindFamily">➕ 立即绑定</button>
+      </view>
+    </view>
+
+    <!-- Menu List -->
+    <view class="menu-list">
+      <view class="menu-list-item" bindtap="goProfileSettings">
+        <text class="menu-list-icon">👤</text>
+        <text class="menu-list-label">个人基本信息</text>
+        <text class="menu-list-arrow">▶</text>
+      </view>
+      <view class="menu-list-item" bindtap="goAddressBook">
+        <text class="menu-list-icon">📍</text>
+        <text class="menu-list-label">常用服务地址</text>
+        <text class="menu-list-arrow">▶</text>
+      </view>
+      <view class="menu-list-item logout" bindtap="handleLogout">
+        <text class="menu-list-icon">🚪</text>
+        <text class="menu-list-label logout-text">退出登录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Tab Bar -->
+  <view class="tab-bar">
+    <view class="tab-item" bindtap="goHome">
+      <view class="tab-item-icon tab-icon-home"></view>
+      <text class="tab-item-label">首页</text>
+    </view>
+    <view class="tab-item" bindtap="goRequest">
+      <view class="tab-item-icon tab-icon-heart-handshake"></view>
+      <text class="tab-item-label">预约</text>
+    </view>
+    <view class="tab-item" bindtap="goRecords">
+      <view class="tab-item-icon tab-icon-history"></view>
+      <text class="tab-item-label">记录</text>
+    </view>
+    <view class="tab-item active">
+      <view class="tab-item-icon tab-icon-user"></view>
+      <text class="tab-item-label">我的</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,129 @@
+<view class="page-container">
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title">求助详情</text>
+    </view>
+  </view>
+
+  <!-- Cancelled Banner -->
+  <block wx:if="{{record.status === 'cancelled'}}">
+    <view class="cancelled-section">
+      <view class="cancelled-icon">✕</view>
+      <text class="cancelled-text">已取消</text>
+      <text class="cancelled-hint">该预约已取消</text>
+    </view>
+  </block>
+
+  <!-- Volunteer In Progress -->
+  <block wx:elif="{{record.status === 'in_progress' && record.volunteer}}">
+    <view class="volunteer-section">
+      <view class="volunteer-avatar-wrap">
+        <image class="volunteer-main-avatar" src="{{record.volunteer.avatar}}" mode="aspectFill" />
+        <view class="volunteer-badge">志愿者赶往中</view>
+      </view>
+      <text class="volunteer-name">{{record.volunteer.name}}</text>
+      <view class="volunteer-stats">
+        <text class="stat-item">⭐ {{record.volunteer.rating || '4.9'}}</text>
+        <text class="stat-dot">•</text>
+        <text class="stat-item">已服务 {{record.volunteer.serviceCount || 0}} 次</text>
+      </view>
+      <button class="view-volunteer-btn" bindtap="goVolunteer">
+        👤 查看志愿者详情
+      </button>
+    </view>
+  </block>
+
+  <!-- Pending Confirm: Photos + Summary -->
+  <block wx:if="{{record.status === 'pending_confirm'}}">
+    <view class="photo-section" wx:if="{{completionInfo}}">
+      <text class="photo-section-title">服务照片</text>
+      <scroll-view class="photo-scroll" scroll-x="{{true}}" show-scrollbar="{{false}}">
+        <image class="photo-thumb" wx:for="{{completionInfo.photos}}" wx:key="index"
+               src="{{item}}" mode="aspectFill" bindtap="previewPhoto" data-url="{{item}}" />
+      </scroll-view>
+      <text class="summary-text" wx:if="{{completionInfo.summary}}">服务小结：{{completionInfo.summary}}</text>
+    </view>
+    <view class="loading-text" wx:else>加载完成信息中...</view>
+
+    <button class="confirm-btn" bindtap="onConfirmCompletion">确认完成</button>
+  </block>
+
+  <!-- Completed: Review -->
+  <block wx:if="{{record.status === 'completed' && review}}">
+    <view class="review-section">
+      <text class="review-section-title">我的评价</text>
+      <view class="review-card">
+        <view class="review-stars">
+          <text class="review-star {{index < review.rating ? 'active' : ''}}" wx:for="{{5}}" wx:key="index">★</text>
+        </view>
+        <text class="review-comment" wx:if="{{review.comment}}">{{review.comment}}</text>
+        <text class="review-date">评价于 {{review.createdAt ? review.createdAt.substring(0, 10) : ''}}</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- Applicants (waiting) -->
+  <block wx:if="{{record.status === 'waiting' && record.applicants}}">
+    <view class="applicants-section">
+      <view class="applicants-header">
+        <text class="applicants-title">👤 已报名志愿者</text>
+        <text class="applicants-count">{{record.applicants.length}} 人报名</text>
+      </view>
+      <view class="applicants-list">
+        <view class="applicant-card" wx:for="{{record.applicants}}" wx:key="id">
+          <image class="applicant-avatar" src="{{item.avatar}}" mode="aspectFill" data-volindex="{{index}}" bindtap="goVolunteer" />
+          <view class="applicant-info">
+            <view class="applicant-name-row">
+              <text class="applicant-name">{{item.name}}</text>
+              <text wx:if="{{item.isGold}}" class="gold-badge">✔️</text>
+            </view>
+            <view class="applicant-stats">
+              <text class="applicant-rating">⭐ {{item.rating || '暂无'}}</text>
+              <text class="applicant-hours">服务 {{item.serviceCount || 0}} 次</text>
+            </view>
+          </view>
+          <button class="select-btn" data-index="{{index}}" bindtap="selectVolunteer">选择TA</button>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- Detail Card -->
+  <view class="detail-card">
+    <view class="detail-card-header">
+      <view class="detail-card-icon-wrap"><image class="icon-svg-lg" src="/images/icons/briefcase-medical.svg" mode="aspectFit" style="stroke:var(--color-secondary);stroke-width:2;" /></view>
+      <text class="detail-card-title">服务需求详情</text>
+    </view>
+
+    <view class="detail-items">
+      <view class="detail-item">
+        <image class="icon-svg" src="/images/icons/utensils.svg" mode="aspectFit" style="stroke:#f97316;stroke-width:2;width:40rpx;height:40rpx;" />
+        <view class="detail-item-content">
+          <text class="detail-item-label">求助类型</text>
+          <text class="detail-item-value">{{record.type}}</text>
+        </view>
+      </view>
+      <view class="detail-item">
+        <image class="icon-svg" src="/images/icons/clock.svg" mode="aspectFit" style="stroke:#3b82f6;stroke-width:2;width:40rpx;height:40rpx;" />
+        <view class="detail-item-content">
+          <text class="detail-item-label">预约时间</text>
+          <text class="detail-item-value">{{record.time}}</text>
+        </view>
+      </view>
+      <view class="detail-item">
+        <image class="icon-svg" src="/images/icons/map-pin.svg" mode="aspectFit" style="stroke:#ef4444;stroke-width:2;width:40rpx;height:40rpx;" />
+        <view class="detail-item-content">
+          <text class="detail-item-label">服务地址</text>
+          <text class="detail-item-value">{{record.address}}</text>
+        </view>
+      </view>
+      <view class="detail-remark">
+        <text class="detail-remark-label">备注信息</text>
+        <text class="detail-remark-text">{{record.description}}</text>
+      </view>
+    </view>
+  </view>
+
+  <button class="cancel-btn" wx:if="{{record.status === 'waiting'}}" bindtap="onCancel">取消本次预约</button>
+</view>

@@ -1,0 +1,116 @@
+<top-app-bar title="服务详情" showBack="{{true}}"></top-app-bar>
+
+<view class="detail-content">
+  <!-- Hero Section -->
+  <view class="hero-card">
+    <view class="hero-top">
+      <text class="hero-title">{{task.title}}</text>
+      <view class="hero-badge {{task.statusClass}}">{{task.statusText}}</view>
+    </view>
+    <view class="hero-reward" wx:if="{{task.rewardHours}}">
+      <image class="hero-star" src="/images/icons/stars.svg" mode="aspectFit" />
+      <text>{{task.rewardHours}} 小时服务奖励</text>
+    </view>
+  </view>
+
+  <!-- Info Grid -->
+  <view class="info-card">
+    <view class="info-row" wx:if="{{task.requesterName}}">
+      <view class="info-label">
+        <image class="info-icon" src="/images/icons/volunteer.svg" mode="aspectFit" />
+        <text>发布人</text>
+      </view>
+      <text class="info-value">{{task.requesterName}}</text>
+    </view>
+    <view class="info-divider"></view>
+    <view class="info-row" wx:if="{{task.type}}">
+      <view class="info-label">
+        <image class="info-icon" src="/images/icons/checklist.svg" mode="aspectFit" />
+        <text>服务类型</text>
+      </view>
+      <text class="info-value">{{task.type}}</text>
+    </view>
+    <view class="info-divider"></view>
+    <view class="info-row" wx:if="{{task.appointmentDate}}">
+      <view class="info-label">
+        <image class="info-icon" src="/images/icons/schedule.svg" mode="aspectFit" />
+        <text>预约时间</text>
+      </view>
+      <view class="info-value-right">
+        <text class="info-value">{{task.appointmentDate}} {{task.appointmentTime}}</text>
+        <text class="info-sub" wx:if="{{task.duration}}">时长 {{task.duration}}</text>
+      </view>
+    </view>
+    <view class="info-divider"></view>
+    <view class="info-row">
+      <view class="info-label">
+        <image class="info-icon" src="/images/icons/location.svg" mode="aspectFit" />
+        <text>服务地点</text>
+      </view>
+      <text class="info-value info-addr">{{task.address || '暂无'}}</text>
+    </view>
+  </view>
+
+  <!-- Description -->
+  <view class="desc-card" wx:if="{{task.description}}">
+    <view class="desc-head">
+      <image class="desc-head-icon" src="/images/icons/info.svg" mode="aspectFit" />
+      <text>服务描述</text>
+    </view>
+    <text class="desc-body">{{task.description}}</text>
+  </view>
+
+  <!-- Applicant Count -->
+  <view class="applicant-bar" wx:if="{{task.applicantCount !== undefined}}">
+    <image class="applicant-icon" src="/images/icons/confirmed.svg" mode="aspectFit" />
+    <text>已有 <text class="applicant-num">{{task.applicantCount}}</text> 人报名此服务</text>
+  </view>
+
+  <!-- Review Card (COMPLETED) -->
+  <view class="review-card" wx:if="{{task.status === 'COMPLETED' && review}}">
+    <view class="review-card-header">
+      <image class="review-card-avatar" src="{{review.fromUserAvatar || ''}}" mode="aspectFill" />
+      <view class="review-card-user">
+        <text class="review-card-name">{{review.fromUserName || '老人'}}</text>
+        <view class="review-card-stars">
+          <text class="review-star {{index < review.rating ? 'active' : ''}}" wx:for="{{5}}" wx:key="index">★</text>
+        </view>
+      </view>
+    </view>
+    <text class="review-card-comment" wx:if="{{review.comment}}">{{review.comment}}</text>
+  </view>
+</view>
+
+<!-- Bottom Action Bar -->
+<view class="bottom-bar" wx:if="{{task.status === 'PENDING'}}">
+  <view class="bottom-bar-inner">
+    <view class="signup-big-btn" bindtap="onSignup">
+      <image class="handshake-icon" src="/images/icons/volunteer.svg" mode="aspectFit" />
+      <text>立即报名</text>
+    </view>
+  </view>
+</view>
+
+<view class="bottom-bar bottom-bar-info" wx:elif="{{task.status === 'MATCHING'}}">
+  <view class="bottom-bar-inner">
+    <text class="pending-confirm-text">已报名，等待老人确认</text>
+  </view>
+</view>
+
+<view class="bottom-bar" wx:elif="{{task.status === 'IN_PROGRESS'}}">
+  <view class="bottom-bar-inner bottom-bar-row">
+    <view class="guidance-btn" bindtap="goToAiGuidance">
+      <image class="guidance-btn-icon" src="/images/icons/smart-toy.svg" mode="aspectFit" />
+      <text class="guidance-btn-text">岗前智能指导</text>
+    </view>
+    <view class="signup-big-btn" bindtap="onCompleteService">
+      <text>完成服务</text>
+    </view>
+  </view>
+</view>
+
+<view class="bottom-bar bottom-bar-info" wx:elif="{{task.status === 'PENDING_CONFIRM'}}">
+  <view class="bottom-bar-inner">
+    <text class="pending-confirm-text">已提交完成信息，等待老人确认</text>
+  </view>
+</view>

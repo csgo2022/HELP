@@ -1,0 +1,250 @@
+.page-container {
+  padding: 0 48rpx;
+  min-height: 100vh;
+  padding-bottom: 200rpx;
+}
+
+.notif-btn {
+  width: 72rpx;
+  height: 72rpx;
+  border: none;
+  background: none;
+  font-size: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+  color: var(--color-primary-container);
+}
+
+.notif-btn:active {
+  transform: scale(0.95);
+}
+
+/* User Card */
+.user-card {
+  background: #fff;
+  border-radius: 48rpx;
+  padding: 48rpx;
+  display: flex;
+  align-items: center;
+  gap: 48rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.06);
+  margin: 48rpx 0;
+}
+
+.user-avatar-wrap {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  flex-shrink: 0;
+}
+
+.user-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 6rpx solid var(--color-primary-container);
+  object-fit: cover;
+}
+
+.verified-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: var(--color-secondary);
+  color: #fff;
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  border: 3rpx solid #fff;
+}
+
+.user-name {
+  font-size: 40rpx;
+  font-weight: 800;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.user-days {
+  font-size: 24rpx;
+  color: #a1a1aa;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.points-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12rpx;
+  background: #fff1e6;
+  padding: 8rpx 32rpx;
+  border-radius: 50rpx;
+  color: var(--color-primary-container);
+  font-weight: 700;
+  font-size: 28rpx;
+}
+
+/* Menu Section */
+.menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+.menu-btn {
+  width: 100%;
+  background: #fff;
+  border-radius: 48rpx;
+  padding: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.06);
+  border: none;
+}
+
+.menu-btn:active {
+  transform: scale(0.98);
+}
+
+.menu-btn-left {
+  display: flex;
+  align-items: center;
+  gap: 32rpx;
+}
+
+.menu-icon-wrap {
+  padding: 32rpx;
+  background: #fff1e6;
+  border-radius: 24rpx;
+}
+
+.menu-icon {
+  font-size: 40rpx;
+}
+
+.menu-text-wrap {
+  text-align: left;
+}
+
+.menu-label {
+  font-size: 36rpx;
+  font-weight: 700;
+  display: block;
+}
+
+.menu-sublabel {
+  font-size: 24rpx;
+  color: #a1a1aa;
+  font-weight: 700;
+  display: block;
+  margin-top: 8rpx;
+}
+
+.menu-arrow {
+  color: #d4d4d8;
+  font-size: 32rpx;
+}
+
+/* Bind Family */
+.bind-family-card {
+  background: var(--color-secondary-container);
+  border-radius: 48rpx;
+  padding: 48rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.bind-content {
+  position: relative;
+  z-index: 1;
+}
+
+.bind-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.bind-desc {
+  font-size: 24rpx;
+  opacity: 0.8;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 32rpx;
+}
+
+.bind-btn {
+  background: var(--color-secondary);
+  color: #fff;
+  padding: 24rpx 48rpx;
+  border-radius: 24rpx;
+  font-weight: 700;
+  font-size: 28rpx;
+  display: inline-flex;
+  align-items: center;
+  gap: 12rpx;
+  border: none;
+  line-height: 1.3;
+}
+
+.bind-btn:active {
+  transform: scale(0.96);
+}
+
+/* Menu List */
+.menu-list {
+  background: #fff;
+  border-radius: 48rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,0.06);
+}
+
+.menu-list-item {
+  display: flex;
+  align-items: center;
+  padding: 40rpx;
+  border-bottom: 1rpx solid #fafafa;
+}
+
+.menu-list-item:last-child {
+  border-bottom: none;
+}
+
+.menu-list-item:active {
+  background: #fafafa;
+}
+
+.menu-list-icon {
+  font-size: 40rpx;
+  color: #71717a;
+  margin-right: 32rpx;
+}
+
+.menu-list-label {
+  font-size: 32rpx;
+  font-weight: 700;
+  flex: 1;
+}
+
+.menu-list-arrow {
+  color: #d4d4d8;
+  font-size: 28rpx;
+}
+
+.menu-list-item.logout {
+  border-bottom: none;
+}
+
+.logout-text {
+  color: var(--color-error);
+}

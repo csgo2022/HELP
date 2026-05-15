@@ -1,0 +1,55 @@
+<view class="page-container">
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title">个人设置</text>
+    </view>
+    <view class="header-spacer"></view>
+  </view>
+
+  <!-- Avatar -->
+  <view class="avatar-section" bindtap="onChangeAvatar">
+    <view class="settings-avatar-wrap">
+      <image class="settings-avatar" src="{{avatar || 'https://images.unsplash.com/photo-1551069613-1904dbdcda11?w=200&h=200&fit=crop'}}" mode="aspectFill" />
+      <view class="camera-btn"><image class="icon-svg-sm" src="/images/icons/camera.svg" mode="aspectFit" style="stroke:#fff;stroke-width:2;" /></view>
+    </view>
+    <text class="settings-name">{{userName}}</text>
+  </view>
+
+  <!-- Basic Info -->
+  <view class="settings-section">
+    <text class="settings-section-title">基本资料</text>
+    <view class="settings-card">
+      <view class="info-item">
+        <text class="info-icon">👤</text>
+        <text class="info-label">真实姓名</text>
+        <text class="info-value">{{realName}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-icon">📞</text>
+        <text class="info-label">联系电话</text>
+        <text class="info-value">{{phone}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Account Security -->
+  <view class="settings-section">
+    <text class="settings-section-title">账户与安全</text>
+    <view class="settings-card">
+      <view class="security-item" bindtap="goAccountSecurity">
+        <view class="security-left">
+          <view class="security-icon-wrap">✅</view>
+          <text class="security-label">账户安全中心</text>
+        </view>
+        <text class="security-arrow">▶</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Action Buttons -->
+  <view class="action-buttons">
+    <button class="edit-btn" bindtap="goEditProfile">✏️ 修改个人信息</button>
+    <button class="logout-btn" bindtap="handleLogout">🚪 退出当前登录</button>
+  </view>
+</view>

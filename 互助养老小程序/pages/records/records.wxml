@@ -1,0 +1,79 @@
+<top-app-bar title="记录"></top-app-bar>
+
+<view class="records-content">
+  <!-- Stats Card -->
+  <view class="stats-card">
+    <view class="stats-inner">
+      <text class="stats-label">累计服务时长 (小时)</text>
+      <view class="stats-value-row">
+        <text class="stats-value">{{totalHours}}</text>
+        <image class="stars-icon" src="/images/icons/stars.svg" mode="aspectFit" />
+      </view>
+      <view class="stats-mini-row">
+        <view class="stats-mini-item">
+          <text class="mini-label">今日存入</text>
+          <text class="mini-value">+{{todayHours}}</text>
+        </view>
+        <view class="stats-mini-item">
+          <text class="mini-label">今日积分积累</text>
+          <text class="mini-value">+{{todayPoints}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Slogan -->
+  <view class="slogan-section">
+    <text class="slogan-title">今日助人，日后被助</text>
+    <text class="slogan-sub">您的每一份善意都被时光温柔铭记</text>
+  </view>
+
+  <!-- Applications Section -->
+  <view class="list-section" wx:if="{{applications.length > 0}}">
+    <view class="list-header">
+      <text class="list-title">我的报名</text>
+    </view>
+
+    <navigator url="/pages/service-detail/service-detail?id={{item.id}}" wx:for="{{applications}}" wx:key="id" class="history-item">
+      <view class="history-left">
+        <view class="history-icon-wrap">
+          <image class="history-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
+        </view>
+        <view class="history-info">
+          <text class="history-title">{{item.title}}</text>
+          <text class="history-meta">{{item.statusText}}</text>
+        </view>
+      </view>
+      <view class="history-right">
+        <text class="history-status status-{{item.status}}">{{item.statusText}}</text>
+      </view>
+    </navigator>
+  </view>
+
+  <!-- Completed Records -->
+  <view class="list-section">
+    <view class="list-header">
+      <text class="list-title">已存入记录</text>
+    </view>
+
+    <navigator url="/pages/record-detail/record-detail?id={{item.id}}" wx:for="{{history}}" wx:key="id" class="history-item">
+      <view class="history-left">
+        <view class="history-icon-wrap">
+          <image class="history-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
+        </view>
+        <view class="history-info">
+          <text class="history-title">{{item.title}}</text>
+          <text class="history-meta">{{item.time}} · {{item.location}}</text>
+        </view>
+      </view>
+      <view class="history-right">
+        <text class="history-duration">{{item.duration}}</text>
+        <text class="history-status">{{item.statusText}}</text>
+      </view>
+    </navigator>
+
+    <view class="empty-tip" wx:if="{{history.length === 0 && applications.length === 0}}">
+      <text class="empty-text">暂无记录</text>
+    </view>
+  </view>
+</view>

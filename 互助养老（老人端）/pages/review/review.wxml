@@ -1,0 +1,36 @@
+<view class="page-container">
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title">发布评价</text>
+    </view>
+    <view class="header-spacer"></view>
+  </view>
+
+  <view class="review-content">
+    <view class="review-avatar-wrap">
+      <image class="review-avatar" wx:if="{{volunteerAvatar}}" src="{{volunteerAvatar}}" mode="aspectFill" />
+      <view class="review-avatar-placeholder" wx:else>👤</view>
+    </view>
+    <text class="review-heading">为 {{volunteerName}} 打分</text>
+    <text class="review-subheading">您的评价将帮助志愿者成长</text>
+
+    <view class="star-rating">
+      <view class="star-item {{rating >= 1 ? 'active' : ''}}" data-star="1" bindtap="setRating">⭐</view>
+      <view class="star-item {{rating >= 2 ? 'active' : ''}}" data-star="2" bindtap="setRating">⭐</view>
+      <view class="star-item {{rating >= 3 ? 'active' : ''}}" data-star="3" bindtap="setRating">⭐</view>
+      <view class="star-item {{rating >= 4 ? 'active' : ''}}" data-star="4" bindtap="setRating">⭐</view>
+      <view class="star-item {{rating >= 5 ? 'active' : ''}}" data-star="5" bindtap="setRating">⭐</view>
+    </view>
+
+    <view class="review-form">
+      <text class="review-form-label">评价详情</text>
+      <textarea class="review-textarea" placeholder="志愿者服务态度如何？是否准时到达？谈谈您的感受吧..." value="{{comment}}" bindinput="onCommentInput" />
+    </view>
+
+    <button class="submit-review-btn" bindtap="submitReview">
+      <text>提交评价</text>
+      <text>✓</text>
+    </button>
+  </view>
+</view>

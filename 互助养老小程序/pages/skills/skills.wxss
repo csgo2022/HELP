@@ -1,0 +1,388 @@
+/* =============================================
+   个人技能编辑 — 自然生长
+   Palette: #2d5a3d deep forest
+             #3a7d4c fresh green
+             #e8f0e4 light sage
+             #f5f0e6 warm cream
+             #c16a4e clay accent
+   ============================================= */
+
+.page {
+  padding: 0 36rpx 200rpx;
+  min-height: 100vh;
+  background: #f5f0e6;
+  display: flex;
+  flex-direction: column;
+  gap: 36rpx;
+}
+
+/* === Top Band === */
+.page-band {
+  height: 6rpx;
+  background: linear-gradient(90deg, #3a7d4c, #5ba367, #3a7d4c);
+  border-radius: 0 0 6rpx 6rpx;
+  width: 200rpx;
+  margin: 0 auto;
+}
+
+/* === Header === */
+.header-area {
+  padding: 8rpx 8rpx 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.header-badge {
+  font-size: 40rpx;
+  font-weight: 900;
+  color: #1a2e1f;
+  letter-spacing: 2rpx;
+  position: relative;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.header-badge::after {
+  content: '';
+  position: absolute;
+  bottom: 2rpx;
+  left: 0;
+  right: 8rpx;
+  height: 8rpx;
+  background: rgba(58, 125, 76, 0.2);
+  border-radius: 4rpx;
+  z-index: -1;
+}
+
+.header-desc {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #8a7a6e;
+  line-height: 1.5;
+}
+
+/* === Section Head === */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8rpx;
+}
+
+.section-head-left {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+}
+
+.section-dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  background: #3a7d4c;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4rpx rgba(58, 125, 76, 0.15);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 800;
+  color: #1a2e1f;
+}
+
+.section-count {
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #6b8f6e;
+  background: rgba(58, 125, 76, 0.08);
+  padding: 8rpx 22rpx;
+  border-radius: 100rpx;
+}
+
+/* === Garden Grid === */
+.garden {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.garden-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 36rpx;
+  padding: 32rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  box-shadow:
+    0 4rpx 16rpx rgba(60, 40, 20, 0.04),
+    0 8rpx 24rpx -8rpx rgba(60, 40, 20, 0.06);
+  border: 2rpx solid #ede8e0;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: card-enter 0.4s ease both;
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20rpx) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.garden-card:active {
+  transform: scale(0.94) !important;
+}
+
+.garden-card-bg {
+  display: none;
+}
+
+/* Decorative leaf — hidden by default, shown on active */
+.garden-leaf {
+  display: none;
+}
+
+/* Base inactive styles */
+.garden-icon-wrap {
+  width: 88rpx;
+  height: 88rpx;
+  background: rgba(58, 125, 76, 0.08);
+  border-radius: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.garden-icon {
+  width: 48rpx;
+  height: 48rpx;
+  transition: all 0.3s;
+}
+
+.garden-label {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #2c1810;
+  transition: color 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.garden-check {
+  display: none;
+  position: absolute;
+  top: 12rpx;
+  right: 12rpx;
+  width: 36rpx;
+  height: 36rpx;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Active state — combined selector for specificity */
+.garden-card.card-active {
+  background: linear-gradient(160deg, #3a7d4c 0%, #2d5a3d 100%) !important;
+  border: 2rpx solid #3a7d4c !important;
+  box-shadow:
+    0 8rpx 32rpx rgba(58, 125, 76, 0.3),
+    0 0 0 4rpx rgba(58, 125, 76, 0.1) !important;
+  transform: translateY(-4rpx);
+}
+
+.garden-card.card-active .garden-leaf {
+  display: block !important;
+  position: absolute;
+  top: -12rpx;
+  right: -12rpx;
+  width: 48rpx;
+  height: 48rpx;
+  background: linear-gradient(135deg, transparent 50%, rgba(255, 255, 255, 0.12) 50%);
+  border-radius: 0 0 0 36rpx;
+}
+
+.garden-card.card-active .garden-icon-wrap {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: scale(1.05);
+}
+
+.garden-card.card-active .garden-icon {
+  filter: brightness(0) invert(1);
+}
+
+.garden-card.card-active .garden-label {
+  color: #ffffff !important;
+}
+
+.garden-card.card-active .garden-check {
+  display: flex !important;
+}
+
+@keyframes pop {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.garden-check-icon {
+  width: 22rpx;
+  height: 22rpx;
+}
+
+/* === Journal === */
+.journal {
+  background: #ffffff;
+  border-radius: 36rpx;
+  padding: 36rpx 36rpx 24rpx;
+  box-shadow:
+    0 4rpx 16rpx rgba(60, 40, 20, 0.04),
+    0 8rpx 24rpx -8rpx rgba(60, 40, 20, 0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.journal-groove {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8rpx;
+  background: linear-gradient(180deg, #3a7d4c, #5ba367, #e8f0e4);
+  border-radius: 0 4rpx 4rpx 0;
+}
+
+.journal-input {
+  width: 100%;
+  height: 240rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #1a2e1f;
+  line-height: 1.7;
+  border: none;
+  background: none;
+  padding: 0 0 0 20rpx;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.journal-input::placeholder {
+  color: #c4b8ae;
+  font-weight: 400;
+}
+
+.journal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 0 0 20rpx;
+  border-top: 2rpx solid #f0ebe4;
+  margin-top: 8rpx;
+}
+
+.journal-hint {
+  font-size: 20rpx;
+  font-weight: 500;
+  color: #b8a89c;
+}
+
+.journal-count {
+  font-size: 20rpx;
+  font-weight: 700;
+  color: #8a7a6e;
+  transition: color 0.2s;
+}
+
+.count-full {
+  color: #dc2626;
+}
+
+/* === Tip === */
+.tip {
+  background: #ffffff;
+  border-radius: 28rpx;
+  padding: 24rpx 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  box-shadow:
+    0 2rpx 8rpx rgba(60, 40, 20, 0.03),
+    0 4rpx 16rpx -4rpx rgba(60, 40, 20, 0.04);
+}
+
+.tip-icon-wrap {
+  width: 48rpx;
+  height: 48rpx;
+  background: rgba(58, 125, 76, 0.08);
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tip-icon {
+  width: 28rpx;
+  height: 28rpx;
+  opacity: 0.5;
+}
+
+.tip-text {
+  font-size: 22rpx;
+  font-weight: 500;
+  color: #8a7a6e;
+  line-height: 1.5;
+  flex: 1;
+}
+
+/* === Bottom Bar === */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(245, 240, 230, 1) 60%, rgba(245, 240, 230, 0));
+  padding: 32rpx 36rpx;
+  padding-top: 60rpx;
+  padding-bottom: calc(32rpx + env(safe-area-inset-bottom));
+  z-index: 50;
+  pointer-events: none;
+}
+
+.bottom-inner {
+  max-width: 700rpx;
+  margin: 0 auto;
+  pointer-events: auto;
+}
+
+.save-btn {
+  width: 100%;
+  height: 112rpx;
+  background: linear-gradient(135deg, #3a7d4c 0%, #2d5a3d 100%);
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: 700;
+  border-radius: 36rpx;
+  border: none;
+  box-shadow:
+    0 12rpx 32rpx rgba(58, 125, 76, 0.3),
+    0 0 0 2rpx rgba(58, 125, 76, 0.1);
+  line-height: 112rpx;
+  padding: 0;
+  letter-spacing: 4rpx;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.save-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 6rpx 16rpx rgba(58, 125, 76, 0.25);
+}

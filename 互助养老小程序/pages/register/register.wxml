@@ -1,0 +1,48 @@
+<top-app-bar title="加入志愿者" showBack="{{true}}"></top-app-bar>
+<view class="register-page">
+  <view class="register-card">
+    <view class="register-header">
+      <view class="reg-icon">
+        <image class="reg-icon-img" src="/images/icons/person-add.svg" mode="aspectFit" />
+      </view>
+      <text class="reg-title">账号注册</text>
+      <text class="reg-subtitle">开启您的志愿服务之旅</text>
+    </view>
+
+    <form bindsubmit="handleRegister" class="register-form">
+      <view class="form-group">
+        <text class="form-label">手机号</text>
+        <view class="input-wrapper">
+          <image class="input-icon" src="/images/icons/phone.svg" mode="aspectFit" />
+          <input class="form-input" type="text" placeholder="请输入手机号" value="{{formData.phone}}" bindinput="onFieldInput" data-field="phone" maxlength="11" />
+        </view>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">设置密码</text>
+        <view class="input-wrapper">
+          <image class="input-icon" src="/images/icons/lock.svg" mode="aspectFit" />
+          <input class="form-input" type="password" placeholder="请输入密码" value="{{formData.password}}" bindinput="onFieldInput" data-field="password" />
+        </view>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">确认密码</text>
+        <view class="input-wrapper">
+          <image class="input-icon" src="/images/icons/confirmed.svg" mode="aspectFit" />
+          <input class="form-input" type="password" placeholder="请再次输入密码" value="{{formData.confirmPassword}}" bindinput="onFieldInput" data-field="confirmPassword" />
+        </view>
+      </view>
+
+      <view class="error-msg" wx:if="{{error}}">{{error}}</view>
+
+      <button class="login-btn" form-type="submit">提交注册</button>
+    </form>
+
+    <view class="register-footer">
+      <text class="footer-text">已有账号？</text>
+      <text class="footer-link highlight" bindtap="goLogin">立即登录</text>
+    </view>
+  </view>
+  <text class="copyright">© 2024 社区志愿服务管理系统</text>
+</view>

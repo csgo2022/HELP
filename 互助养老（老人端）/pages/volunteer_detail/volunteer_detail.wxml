@@ -1,0 +1,97 @@
+<view class="page">
+  <!-- Header -->
+  <view class="header">
+    <view class="header-back" bindtap="goBack">
+      <image class="header-back-icon" src="/images/icons/arrow-left.svg" mode="aspectFit" />
+    </view>
+    <text class="header-title">志愿者详情</text>
+  </view>
+
+  <!-- Profile Card -->
+  <view class="profile-card">
+    <view class="profile-card-top">
+      <view class="profile-avatar-wrap">
+        <image class="profile-avatar" src="{{volunteer.avatar || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop'}}" mode="aspectFill" />
+        <view class="profile-avatar-ring"></view>
+      </view>
+      <text class="profile-name">{{volunteer.name}}</text>
+      <view class="profile-tags">
+        <text class="profile-tag profile-tag-verified">
+          <image class="profile-tag-icon" src="/images/icons/badge-check.svg" mode="aspectFit" /> 已认证
+        </text>
+        <text class="profile-tag profile-tag-role">志愿者</text>
+      </view>
+    </view>
+
+    <view class="profile-stats">
+      <view class="profile-stat">
+        <text class="profile-stat-value">{{volunteer.rating || '5.0'}}</text>
+        <text class="profile-stat-label">综合评分</text>
+      </view>
+      <view class="profile-stat-divider"></view>
+      <view class="profile-stat">
+        <text class="profile-stat-value">{{volunteer.totalHours || '0'}}h</text>
+        <text class="profile-stat-label">累计时长</text>
+      </view>
+      <view class="profile-stat-divider"></view>
+      <view class="profile-stat">
+        <text class="profile-stat-value">{{volunteer.reviewCount || 0}}</text>
+        <text class="profile-stat-label">评价数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Contact -->
+  <view class="section">
+    <text class="section-title">联系方式</text>
+    <view class="contact-card" bindtap="onCall">
+      <view class="contact-icon-wrap">
+        <image class="contact-icon" src="/images/icons/phone.svg" mode="aspectFit" />
+      </view>
+      <view class="contact-info">
+        <text class="contact-label">联系电话</text>
+        <text class="contact-number">{{volunteer.phone || '暂无'}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Skills -->
+  <view class="section" wx:if="{{volunteer.skills.length > 0}}">
+    <text class="section-title">擅长领域</text>
+    <view class="skills-wrap">
+      <text class="skill-tag" wx:for="{{volunteer.skills}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- Reviews -->
+  <view class="section">
+    <text class="section-title">
+      历史评价
+      <text class="section-title-count" wx:if="{{volunteer.reviewCount > 0}}">（{{volunteer.reviewCount}}）</text>
+    </text>
+
+    <block wx:if="{{volunteer.reviews.length > 0}}">
+      <view class="review-card" wx:for="{{volunteer.reviews}}" wx:for-item="review" wx:key="id">
+        <view class="review-card-top">
+          <view class="review-card-user">
+            <image class="review-card-avatar" src="{{review.avatar || '/images/icons/user.svg'}}" mode="aspectFill" />
+            <text class="review-card-name">{{review.author}}</text>
+          </view>
+          <view class="review-card-stars">
+            <image class="review-card-star {{i < review.rating ? '' : 'star-off'}}" wx:for="{{5}}" wx:for-item="i" wx:key="*this" src="/images/icons/star.svg" mode="aspectFit" />
+          </view>
+        </view>
+        <text class="review-card-comment" wx:if="{{review.comment}}">{{review.comment}}</text>
+        <text class="review-card-date">{{review.date}}</text>
+      </view>
+    </block>
+
+    <view class="empty-reviews" wx:else>
+      <view class="empty-reviews-icon">
+        <image class="empty-reviews-icon-img" src="/images/icons/message-square.svg" mode="aspectFit" />
+      </view>
+      <text class="empty-reviews-text">暂无评价</text>
+      <text class="empty-reviews-desc">完成服务后将收到评价</text>
+    </view>
+  </view>
+</view>

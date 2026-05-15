@@ -1,0 +1,64 @@
+<view class="page-container">
+  <!-- Header -->
+  <view class="home-header">
+    <text class="home-title">互助养老</text>
+  </view>
+
+  <!-- Greeting -->
+  <view class="greeting-section">
+    <text class="greeting-text">{{greeting}}，{{userName}}</text>
+    <text class="greeting-sub">今天也是充满活力的一天！</text>
+  </view>
+
+  <!-- Action Cards -->
+  <view class="action-grid">
+    <view class="action-card primary-action" bindtap="goRequest">
+      <view class="action-icon-wrap">
+        <image class="icon-svg-xl" src="/images/icons/heart-pulse.svg" mode="aspectFit" style="stroke:#fff;stroke-width:2;" />
+      </view>
+      <text class="action-label">发布帮扶\n需求</text>
+    </view>
+    <view class="action-card secondary-action" bindtap="goHealth">
+      <view class="action-icon-wrap">
+        <image class="icon-svg-xl" src="/images/icons/shield-check.svg" mode="aspectFit" style="stroke:var(--color-on-surface);stroke-width:2;" />
+      </view>
+      <text class="action-label">AI 健康\n监测</text>
+    </view>
+  </view>
+
+  <!-- Community Announcement -->
+  <view class="announcement-card" bindtap="goAnnouncements">
+    <view class="announcement-header">
+      <image class="icon-svg" src="/images/icons/bell.svg" mode="aspectFit" style="stroke:var(--color-primary-container);" />
+      <text class="announcement-title">社区公告</text>
+    </view>
+    <view class="announcement-body">
+      <text class="announcement-content">{{announcementContent || '暂无最新公告'}}</text>
+      <view class="announcement-more">
+        <text>查看更多</text>
+        <image class="icon-svg-sm" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+      </view>
+    </view>
+  </view>
+
+
+  <!-- Tab Bar -->
+  <view class="tab-bar">
+    <view class="tab-item active" bindtap="goHome">
+      <view class="tab-item-icon tab-icon-home"></view>
+      <text class="tab-item-label">首页</text>
+    </view>
+    <view class="tab-item" bindtap="goRequest">
+      <view class="tab-item-icon tab-icon-heart-handshake"></view>
+      <text class="tab-item-label">预约</text>
+    </view>
+    <view class="tab-item" bindtap="goRecords">
+      <view class="tab-item-icon tab-icon-history"></view>
+      <text class="tab-item-label">记录</text>
+    </view>
+    <view class="tab-item" bindtap="goProfile">
+      <view class="tab-item-icon tab-icon-user"></view>
+      <text class="tab-item-label">我的</text>
+    </view>
+  </view>
+</view>

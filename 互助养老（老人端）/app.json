@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/register/register",
+    "pages/home/home",
+    "pages/health/health",
+    "pages/request/request",
+    "pages/records/records",
+    "pages/profile/profile",
+    "pages/volunteer_detail/volunteer_detail",
+    "pages/service_detail/service_detail",
+    "pages/address_book/address_book",
+    "pages/add_address/add_address",
+    "pages/bind_family/bind_family",
+    "pages/review/review",
+    "pages/announcements/announcements",
+    "pages/announcement_detail/announcement_detail",
+    "pages/realname_auth/realname_auth",
+    "pages/profile_settings/profile_settings",
+    "pages/edit_profile/edit_profile",
+    "pages/account_security/account_security",
+    "pages/change_password/change_password",
+    "pages/change_phone/change_phone",
+    "pages/forgot-password/forgot-password"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#fff8f5",
+    "navigationBarTitleText": "互助养老",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom",
+    "backgroundColor": "#fff8f5"
+  },
+  "requiredPrivateInfos": ["chooseLocation"],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于在地图上选择您的服务地址"
+    }
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

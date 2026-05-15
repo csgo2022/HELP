@@ -1,0 +1,4 @@
+<web-view src="{{url}}"></web-view>
+<view class="back-overlay" bindtap="goBack">
+  <image class="back-icon" src="/images/icons/arrow-back.svg" mode="aspectFit" />
+</view>

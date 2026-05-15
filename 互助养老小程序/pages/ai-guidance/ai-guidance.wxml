@@ -1,0 +1,85 @@
+<top-app-bar title="岗前智能指导" showBack="{{true}}"></top-app-bar>
+
+<scroll-view class="page-content" scroll-y wx:if="{{!loading && guidance}}">
+  <!-- Robot Icon Section -->
+  <view class="robot-section">
+    <view class="robot-icon-wrap">
+      <image class="robot-icon" src="/images/icons/smart-toy.svg" mode="aspectFit" />
+    </view>
+    <text class="robot-title">岗前智能指导</text>
+    <text class="robot-subtitle">小助助手正在为您准备服务贴士</text>
+  </view>
+
+  <!-- Chat Area -->
+  <view class="chat-area">
+    <!-- Tips Bubble -->
+    <view class="chat-row ai-row">
+      <image class="chat-avatar" src="/images/icons/support-agent.svg" mode="aspectFit" />
+      <view class="chat-bubble ai-bubble">
+        <text class="bubble-text">您好！服务前请特别注意以下事项：</text>
+        <view class="checklist-items">
+          <view class="checklist-item" wx:for="{{guidance.tips}}" wx:key="*this">
+            <image class="check-icon" src="/images/icons/check.svg" mode="aspectFit" />
+            <text class="check-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- Question Bubble -->
+    <view class="chat-row ai-row" wx:if="{{guidance.question}}">
+      <image class="chat-avatar" src="/images/icons/psychology.svg" mode="aspectFit" />
+      <view class="chat-bubble question-bubble">
+        <text class="bubble-text">{{guidance.question.question}}</text>
+        <view class="option-list">
+          <view class="option-btn {{answered && item.label === guidance.question.correctAnswer ? 'correct' : (answered && item.label === selectedAnswer && !isCorrect ? 'wrong' : '')}}"
+               bindtap="onOptionTap" data-option="{{item.label}}"
+               wx:for="{{guidance.question.options}}" wx:key="label">
+            <text class="option-label">{{item.label}}</text>
+            <text class="option-text">{{item.text}}</text>
+          </view>
+        </view>
+        <!-- Answer Feedback -->
+        <view class="answer-feedback" wx:if="{{answered}}">
+          <text class="answer-title {{isCorrect ? 'correct-title' : 'wrong-title'}}">
+            {{isCorrect ? '回答正确！' : '回答错误'}}
+          </text>
+          <text class="answer-desc">{{guidance.question.explanation}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Checklist Card -->
+  <view class="checklist-card" wx:if="{{checklist.length > 0}}">
+    <view class="checklist-header">
+      <text class="checklist-title">出发前检查清单</text>
+      <image class="bell-icon" src="/images/icons/notifications.svg" mode="aspectFit" />
+    </view>
+    <view class="checklist-body">
+      <view class="checklist-row" wx:for="{{checklist}}" wx:key="index" data-index="{{index}}" bindtap="onCheckboxTap">
+        <view class="checkbox {{item.checked ? 'checked' : 'unchecked'}}">
+          <image class="checkbox-icon" src="/images/icons/check.svg" mode="aspectFit" wx:if="{{item.checked}}" />
+        </view>
+        <text class="checklist-row-text">{{item.text}}</text>
+      </view>
+    </view>
+    <view class="start-btn" bindtap="onStartNavigate">
+      <image class="nav-icon" src="/images/icons/navigation.svg" mode="aspectFit" />
+      <text>确认并前往服务</text>
+    </view>
+  </view>
+
+  <view class="bottom-spacer"></view>
+</scroll-view>
+
+<!-- Loading State -->
+<view class="loading-container" wx:if="{{loading}}">
+  <view class="loading-card">
+    <view class="loading-animation">
+      <image class="loading-icon" src="/images/icons/smart-toy.svg" mode="aspectFit" />
+    </view>
+    <text class="loading-title">AI 智能指导生成中</text>
+    <text class="loading-subtitle">正在根据任务信息为您定制服务贴士...</text>
+  </view>
+</view>

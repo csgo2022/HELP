@@ -1,0 +1,351 @@
+.leaderboard-page {
+  min-height: 100vh;
+  background: #fff8fe;
+  padding: 0 20rpx 120rpx;
+  box-sizing: border-box;
+}
+
+/* ===== Tab Switcher ===== */
+.tab-switcher {
+  display: flex;
+  flex-direction: row;
+  background: #ffffff;
+  border-radius: 40rpx;
+  padding: 8rpx;
+  margin: 20rpx 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.06);
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--color-on-surface-variant, #6f6057);
+  border-radius: 32rpx;
+  transition: all 0.3s ease;
+}
+
+.tab-active {
+  background: linear-gradient(135deg, var(--color-primary-container, #ff8c42), var(--color-primary, #9b4500));
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4rpx 12rpx rgba(155, 69, 0, 0.3);
+}
+
+/* ===== Podium Section ===== */
+.podium-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 40rpx 20rpx 30rpx;
+  gap: 12rpx;
+}
+
+/* Podium Items */
+.podium-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 16rpx;
+  border-radius: 24rpx;
+  min-width: 170rpx;
+}
+
+.podium-first {
+  z-index: 10;
+  transform: scale(1.1);
+  position: relative;
+}
+
+.podium-second {
+  z-index: 5;
+}
+
+.podium-third {
+  z-index: 5;
+}
+
+/* Medal / Crown Icons */
+.medal-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 8rpx;
+}
+
+.medal-img {
+  width: 100%;
+  height: 100%;
+}
+
+.medal-img.gold {
+  width: 56rpx;
+  height: 56rpx;
+}
+
+.crown-icon {
+  position: absolute;
+  top: -30rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 48rpx;
+  z-index: 15;
+}
+
+.crown-img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Avatar Wrappers */
+.avatar-wrapper {
+  position: relative;
+  margin-bottom: 12rpx;
+}
+
+.avatar-wrapper.small {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.avatar-wrapper.large {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.avatar-wrapper.ring-effect::before {
+  content: '';
+  position: absolute;
+  inset: -8rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary-container, #ff8c42), #ffd700, var(--color-primary, #9b4500));
+  z-index: -1;
+  animation: ring-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ring-pulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Avatar Circle Placeholder */
+.avatar-circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.avatar-image.small {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+/* Avatar Colors */
+.avatar-color-0 {
+  background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.avatar-color-1 {
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+}
+
+.avatar-color-2 {
+  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+}
+
+.avatar-color-3 {
+  background: linear-gradient(135deg, #d4fc79, #96e6a1);
+}
+
+.avatar-color-4 {
+  background: linear-gradient(135deg, #fccb90, #d57eeb);
+}
+
+.avatar-color-5 {
+  background: linear-gradient(135deg, #e0c3fc, #8ec5fc);
+}
+
+/* Avatar Initials */
+.avatar-initials {
+  color: #ffffff;
+  font-size: 44rpx;
+  font-weight: 700;
+}
+
+.avatar-initials.large {
+  font-size: 52rpx;
+}
+
+.avatar-initials.small {
+  font-size: 32rpx;
+}
+
+/* Podium Text */
+.podium-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-on-surface-variant, #6f6057);
+  margin-bottom: 4rpx;
+}
+
+.podium-name.first {
+  font-size: 32rpx;
+  color: var(--color-primary, #9b4500);
+}
+
+.podium-score {
+  font-size: 24rpx;
+  color: #999999;
+  font-weight: 500;
+}
+
+.podium-score.first {
+  font-size: 28rpx;
+  color: var(--color-primary, #9b4500);
+  font-weight: 700;
+}
+
+/* ===== Ranking List ===== */
+.ranking-list {
+  background: #ffffff;
+  border-radius: 24rpx;
+  margin: 10rpx 24rpx;
+  padding: 0 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.ranking-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 28rpx 0;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+
+.ranking-item:last-child {
+  border-bottom: none;
+}
+
+.rank-number {
+  width: 56rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #cccccc;
+  text-align: center;
+}
+
+.rank-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.rank-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.rank-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.rank-score-badge {
+  background: linear-gradient(135deg, var(--color-primary-container, #ff8c42), var(--color-primary, #9b4500));
+  color: #ffffff;
+  font-size: 24rpx;
+  font-weight: 600;
+  padding: 8rpx 20rpx;
+  border-radius: 30rpx;
+  flex-shrink: 0;
+}
+
+/* ===== Bottom Profile Bar ===== */
+.bottom-profile-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+  padding: 20rpx 32rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom, 0rpx));
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.profile-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  flex-shrink: 0;
+}
+
+.profile-avatar-bg {
+  background: linear-gradient(135deg, var(--color-primary-container, #ff8c42), var(--color-primary, #9b4500));
+}
+
+.avatar-initials.profile {
+  font-size: 32rpx;
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.profile-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.profile-tag {
+  font-size: 24rpx;
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.profile-stats {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.profile-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-size: 26rpx;
+  font-weight: 700;
+  padding: 10rpx 24rpx;
+  border-radius: 30rpx;
+  flex-shrink: 0;
+  backdrop-filter: blur(4px);
+}

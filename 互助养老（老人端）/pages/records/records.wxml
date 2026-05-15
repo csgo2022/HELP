@@ -1,0 +1,62 @@
+<view class="page-container">
+  <!-- Header -->
+  <view class="page-header">
+    <text class="page-title">服务记录</text>
+  </view>
+
+  <!-- Tab Switch -->
+  <view class="tab-switch">
+    <view class="tab-switch-item {{tab === 'active' ? 'active' : ''}}" data-tab="active" bindtap="switchTab">进行中</view>
+    <view class="tab-switch-item {{tab === 'completed' ? 'active' : ''}}" data-tab="completed" bindtap="switchTab">已完成</view>
+  </view>
+
+  <!-- Record List -->
+  <view class="record-list">
+    <view class="record-card" wx:for="{{filteredRecords}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <view class="record-card-top">
+        <view class="record-status {{item.status}}">
+          <text wx:if="{{item.status === 'in_progress'}}">服务中</text>
+          <text wx:elif="{{item.status === 'completed'}}">已完成</text>
+          <text wx:elif="{{item.status === 'cancelled'}}">已取消</text>
+          <text wx:elif="{{item.status === 'pending_confirm'}}">待确认</text>
+          <text wx:else>等待中</text>
+        </view>
+        <text class="record-time-label">2小时前</text>
+      </view>
+      <text class="record-type">{{item.type}}</text>
+      <text class="record-desc">{{item.description}}</text>
+      <view class="record-tags">
+        <text class="record-tag"><image class="icon-svg-sm" src="/images/icons/clock.svg" mode="aspectFit" style="stroke:var(--color-primary-container);width:28rpx;height:28rpx;display:inline;vertical-align:middle;margin-right:6rpx;" /> {{item.time}}</text>
+        <text class="record-tag"><image class="icon-svg-sm" src="/images/icons/map-pin.svg" mode="aspectFit" style="stroke:var(--color-primary-container);width:28rpx;height:28rpx;display:inline;vertical-align:middle;margin-right:6rpx;" /> {{item.address}}</text>
+      </view>
+
+      <!-- Review Button (only for completed) -->
+      <button wx:if="{{item.status === 'completed' && !item.reviewed}}" class="review-btn" catchtap="goReview" data-id="{{item.id}}">
+        <image class="icon-svg-sm" src="/images/icons/star.svg" mode="aspectFit" style="stroke:currentColor;width:28rpx;height:28rpx;display:inline;vertical-align:middle;" /> 评价服务
+      </button>
+      <view wx:elif="{{item.status === 'completed' && item.reviewed}}" class="reviewed-badge">
+        <text>已评价</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Tab Bar -->
+  <view class="tab-bar">
+    <view class="tab-item" bindtap="goHome">
+      <view class="tab-item-icon tab-icon-home"></view>
+      <text class="tab-item-label">首页</text>
+    </view>
+    <view class="tab-item" bindtap="goRequest">
+      <view class="tab-item-icon tab-icon-heart-handshake"></view>
+      <text class="tab-item-label">预约</text>
+    </view>
+    <view class="tab-item active">
+      <view class="tab-item-icon tab-icon-history"></view>
+      <text class="tab-item-label">记录</text>
+    </view>
+    <view class="tab-item" bindtap="goProfile">
+      <view class="tab-item-icon tab-icon-user"></view>
+      <text class="tab-item-label">我的</text>
+    </view>
+  </view>
+</view>

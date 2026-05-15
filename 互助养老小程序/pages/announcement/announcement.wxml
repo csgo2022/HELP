@@ -1,0 +1,42 @@
+<top-app-bar title="公告栏" showBack="{{true}}"></top-app-bar>
+
+<view class="announcement-content">
+  <!-- Search -->
+  <view class="search-bar">
+    <image class="search-icon" src="/images/icons/search.svg" mode="aspectFit" />
+    <input class="search-input" type="text" placeholder="搜索政策或通知..." disabled="{{true}}" />
+  </view>
+
+  <!-- Announcement List -->
+  <view class="announce-list">
+    <navigator url="/pages/announcement-detail/announcement-detail?id={{item.id}}" wx:for="{{announcements}}" wx:key="id" class="announce-card" hover-class="announce-hover">
+      <view class="announce-top">
+        <view class="announce-icon-bg {{item.isNew ? 'bg-orange-light' : 'bg-default'}}">
+          <image class="announce-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
+        </view>
+        <view class="announce-badges">
+          <view class="badge-top" wx:if="{{item.isTop}}">置顶</view>
+          <view class="badge-new" wx:if="{{item.isNew}}">最新</view>
+        </view>
+      </view>
+
+      <view class="announce-meta-row">
+        <text class="announce-category">{{item.category}}</text>
+        <text class="announce-date">{{item.date}}</text>
+      </view>
+
+      <text class="announce-title">{{item.title}}</text>
+      <text class="announce-desc">{{item.description}}</text>
+
+      <view class="announce-footer">
+        <text class="announce-more">查看详情</text>
+      </view>
+    </navigator>
+  </view>
+
+  <!-- Tip -->
+  <view class="tip-card">
+    <image class="tip-icon" src="/images/icons/info.svg" mode="aspectFit" />
+    <text class="tip-text">若您在阅读公告或办理业务中需要协助，可点击页面下方的"客服"图标，社区志愿者将为您提供上门解释指导。</text>
+  </view>
+</view>

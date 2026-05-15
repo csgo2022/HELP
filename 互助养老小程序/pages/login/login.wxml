@@ -1,0 +1,40 @@
+<view class="login-page">
+  <view class="login-card">
+    <view class="login-header">
+      <view class="logo-icon">
+        <image class="logo-img" src="/images/icons/volunteer.svg" mode="aspectFit" />
+      </view>
+      <text class="login-title">志愿者服务平台</text>
+      <text class="login-subtitle">欢迎回来，李师傅</text>
+    </view>
+
+    <form catchsubmit="handleLogin" class="login-form">
+      <view class="form-group">
+        <text class="form-label">手机号</text>
+        <view class="input-wrapper">
+          <image class="input-icon" src="/images/icons/phone.svg" mode="aspectFit" />
+          <input class="form-input" type="text" placeholder="请输入手机号" value="{{phone}}" bindinput="onPhoneInput" maxlength="11" />
+        </view>
+      </view>
+
+      <view class="form-group">
+        <text class="form-label">密码</text>
+        <view class="input-wrapper">
+          <image class="input-icon" src="/images/icons/lock.svg" mode="aspectFit" />
+          <input class="form-input" type="password" placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" />
+        </view>
+      </view>
+
+      <view class="error-msg" wx:if="{{error}}">{{error}}</view>
+
+      <button class="login-btn" formType="submit">立即登录</button>
+    </form>
+
+    <view class="login-footer">
+      <text class="footer-link" bindtap="onForgotPassword">忘记密码？</text>
+      <text class="footer-link highlight" bindtap="goRegister">新用户注册</text>
+    </view>
+  </view>
+
+  <text class="copyright">© 2024 社区志愿服务管理系统</text>
+</view>

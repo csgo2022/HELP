@@ -1,0 +1,72 @@
+<top-app-bar title="服务管理" showBack="{{true}}"></top-app-bar>
+
+<view class="page">
+  <!-- Top decorative band -->
+  <view class="page-band"></view>
+
+  <!-- Header -->
+  <view class="header-area">
+    <view class="header-badge">我的专长</view>
+    <text class="header-desc">选择您擅长的领域，让需要帮助的人找到您</text>
+  </view>
+
+  <!-- Skills Garden -->
+  <view class="section-head">
+    <view class="section-head-left">
+      <view class="section-dot"></view>
+      <text class="section-title">擅长领域</text>
+    </view>
+    <text class="section-count">{{selected.length}}/{{skills.length}}</text>
+  </view>
+
+  <view class="garden">
+    <view wx:for="{{skills}}" wx:key="id"
+      class="garden-card {{item.active ? 'card-active' : ''}}"
+      data-name="{{item.name}}" bindtap="toggleSkill"
+      style="animation-delay:{{index * 0.05}}s">
+      <view class="garden-card-bg"></view>
+      <view class="garden-leaf"></view>
+      <view class="garden-icon-wrap">
+        <image class="garden-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
+      </view>
+      <text class="garden-label">{{item.name}}</text>
+      <view wx:if="{{item.active}}" class="garden-check">
+        <image class="garden-check-icon" src="/images/icons/check.svg" mode="aspectFit" />
+      </view>
+    </view>
+  </view>
+
+  <!-- Journal Section -->
+  <view class="section-head">
+    <view class="section-head-left">
+      <view class="section-dot"></view>
+      <text class="section-title">专长笔记</text>
+    </view>
+  </view>
+
+  <view class="journal">
+    <view class="journal-groove"></view>
+    <textarea class="journal-input" placeholder="写下您的其他专长或专业资质，如持有护士证、精通方言等……" maxlength="200" bindinput="onTextInput" value="{{skillText}}" />
+    <view class="journal-footer">
+      <text class="journal-hint">展示您的独特价值</text>
+      <text class="journal-count {{textCount >= 200 ? 'count-full' : ''}}">{{textCount}}/200</text>
+    </view>
+  </view>
+
+  <!-- Tip -->
+  <view class="tip">
+    <view class="tip-icon-wrap">
+      <image class="tip-icon" src="/images/icons/psychology.svg" mode="aspectFit" />
+    </view>
+    <text class="tip-text">详细的技能描述有助于提高匹配成功率，展现您的爱心与专业。</text>
+  </view>
+</view>
+
+<!-- Bottom Bar -->
+<view class="bottom-bar">
+  <view class="bottom-inner">
+    <button class="save-btn" bindtap="onSave">
+      <text>保存修改</text>
+    </button>
+  </view>
+</view>

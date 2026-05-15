@@ -1,0 +1,18 @@
+<view class="top-bar-wrapper" style="padding-top: {{statusBarHeight}}px;">
+  <view class="top-bar" style="background: {{bgColor}};">
+    <view class="top-bar-left">
+      <view class="top-bar-back" wx:if="{{showBack}}" bindtap="onBack">
+        <image class="icon-back" src="/images/icons/arrow-back.svg" mode="aspectFit" />
+      </view>
+      <image class="avatar" wx:if="{{showAvatar}}" src="{{avatarSrc}}" mode="aspectFill" />
+      <text class="top-bar-title">{{title}}</text>
+    </view>
+    <view class="top-bar-right" wx:if="{{showNotify}}" bindtap="onNotify">
+      <image class="icon-notify" src="/images/icons/notifications.svg" mode="aspectFit" />
+      <view class="notify-badge" wx:if="{{notifyCount > 0}}">{{notifyCount}}</view>
+    </view>
+    <view class="top-bar-right" wx:elif="{{rightIcon}}" bindtap="onRightTap">
+      <image class="icon-right" src="/images/icons/{{rightIcon}}.svg" mode="aspectFit" />
+    </view>
+  </view>
+</view>

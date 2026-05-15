@@ -1,0 +1,49 @@
+<top-app-bar title="新增地址" showBack="{{true}}"></top-app-bar>
+
+<view class="add-address-content">
+  <!-- Map Picker -->
+  <view class="map-picker" bindtap="onChooseLocation">
+    <view class="map-picker-icon-wrap">
+      <image class="map-picker-icon" src="/images/icons/location.svg" mode="aspectFit" />
+    </view>
+    <view class="map-picker-text-wrap">
+      <text class="map-picker-label">选择位置</text>
+      <text class="map-picker-value {{addressDetail ? '' : 'placeholder'}}">{{addressDetail || '点击在地图上选择位置'}}</text>
+    </view>
+    <image class="map-picker-arrow" src="/images/icons/chevron-right.svg" mode="aspectFit" />
+  </view>
+
+  <!-- Form -->
+  <view class="form-area">
+    <view class="input-group">
+      <text class="input-label">收件人姓名</text>
+      <view class="input-wrap">
+        <input class="input-field" type="text" placeholder="请输入收件人姓名" value="{{recipientName}}" bindinput="onRecipientNameInput" />
+      </view>
+    </view>
+    <view class="input-group">
+      <text class="input-label">联系电话</text>
+      <view class="input-wrap">
+        <input class="input-field" type="number" placeholder="请输入手机号码" value="{{recipientPhone}}" bindinput="onRecipientPhoneInput" />
+      </view>
+    </view>
+    <view class="input-group">
+      <text class="input-label">地址名称</text>
+      <view class="input-wrap">
+        <input class="input-field" type="text" placeholder="例如：我的家、儿子家" value="{{addressName}}" bindinput="onNameInput" />
+      </view>
+    </view>
+    <view class="input-group">
+      <text class="input-label">详细地址</text>
+      <view class="input-wrap">
+        <input class="input-field" type="text" placeholder="街道、社区、门牌号" value="{{addressDetail}}" bindinput="onDetailInput" />
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="bottom-bar">
+  <button class="save-btn" bindtap="handleSave">
+    <text>确认保存</text>
+  </button>
+</view>

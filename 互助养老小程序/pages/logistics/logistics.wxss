@@ -1,0 +1,314 @@
+.logistics-content {
+  padding: 32rpx 40rpx 180rpx;
+  max-width: 700rpx;
+  margin: 0 auto;
+}
+
+/* Package Card */
+.package-card {
+  background: white;
+  border-radius: 36rpx;
+  padding: 40rpx;
+  box-shadow: 0 12rpx 32rpx -8rpx rgba(148, 107, 82, 0.15);
+  margin-bottom: 32rpx;
+}
+
+.package-header {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.package-icon-wrap {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 20rpx;
+  background: rgba(155, 69, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.package-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.package-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.courier-name {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.courier-id {
+  font-size: 20rpx;
+  color: var(--color-on-surface-variant);
+  font-weight: 500;
+}
+
+.package-status {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  background: rgba(255, 140, 66, 0.08);
+  padding: 16rpx 24rpx;
+  border-radius: 24rpx;
+}
+
+.package-status-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: var(--color-primary-container);
+  flex-shrink: 0;
+}
+
+.package-status-text {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: var(--color-primary-container);
+}
+
+/* Timeline Card */
+.timeline-card {
+  background: white;
+  border-radius: 36rpx;
+  padding: 40rpx;
+  box-shadow: 0 12rpx 32rpx -8rpx rgba(148, 107, 82, 0.15);
+  margin-bottom: 32rpx;
+}
+
+.timeline-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--color-on-surface);
+  margin-bottom: 32rpx;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 24rpx;
+  align-items: stretch;
+}
+
+.timeline-node-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40rpx;
+  flex-shrink: 0;
+}
+
+.timeline-line {
+  width: 2rpx;
+  flex: 1;
+  background: #e1d8d4;
+  min-height: 24rpx;
+}
+
+.timeline-line-hidden {
+  visibility: hidden;
+}
+
+.timeline-node {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  background: #c4b9b2;
+  margin: 8rpx 0;
+  flex-shrink: 0;
+}
+
+.timeline-node-latest {
+  width: 32rpx;
+  height: 32rpx;
+  background: var(--color-primary-container);
+  box-shadow: 0 0 0 6rpx rgba(255, 140, 66, 0.15);
+}
+
+.timeline-content {
+  flex: 1;
+  padding-bottom: 40rpx;
+}
+
+.timeline-item:last-child .timeline-content {
+  padding-bottom: 0;
+}
+
+.timeline-status-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.timeline-event-icon {
+  width: 28rpx;
+  height: 28rpx;
+  flex-shrink: 0;
+}
+
+.timeline-status {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.timeline-status-latest {
+  font-size: 28rpx;
+  color: var(--color-primary-container);
+}
+
+.timeline-desc {
+  display: block;
+  font-size: 22rpx;
+  color: var(--color-on-surface-variant);
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 8rpx;
+}
+
+.timeline-time {
+  display: block;
+  font-size: 20rpx;
+  color: #8c7c73;
+  font-weight: 500;
+}
+
+/* Address Card */
+.address-card {
+  background: rgba(255, 243, 235, 0.8);
+  border-radius: 36rpx;
+  padding: 40rpx;
+  display: flex;
+  gap: 24rpx;
+  align-items: flex-start;
+}
+
+.address-icon {
+  width: 36rpx;
+  height: 36rpx;
+  flex-shrink: 0;
+  margin-top: 4rpx;
+}
+
+.address-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.address-label {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.address-text {
+  font-size: 22rpx;
+  color: var(--color-on-surface-variant);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Route Card */
+.route-card {
+  margin-bottom: 32rpx;
+  background: #fff;
+  border-radius: 36rpx;
+  box-shadow: 0 12rpx 32rpx -8rpx rgba(148, 107, 82, 0.15);
+}
+
+.route-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx 40rpx 24rpx;
+}
+
+.route-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.route-map-btn {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 12rpx 20rpx;
+  background: rgba(255, 140, 66, 0.1);
+  border-radius: 20rpx;
+}
+
+.route-map-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.route-map-text {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--color-primary-container);
+}
+
+.route-body {
+  padding: 0 40rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.route-node {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.route-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.route-dot-start {
+  background: #E74C3C;
+}
+
+.route-dot-cur {
+  background: #E8751A;
+  box-shadow: 0 0 0 6rpx rgba(232, 117, 26, 0.2);
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.route-dot-end {
+  background: #34C759;
+}
+
+.route-city {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--color-on-surface);
+}
+
+.route-city-cur {
+  color: var(--color-primary-container);
+  font-weight: 700;
+}
+
+.route-line {
+  width: 2rpx;
+  height: 28rpx;
+  background: #e1d8d4;
+  margin-left: 9rpx;
+}

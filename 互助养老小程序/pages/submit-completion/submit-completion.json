@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "top-app-bar": "/components/top-app-bar/top-app-bar"
+  },
+  "navigationBarTitleText": "提交服务完成"
+}

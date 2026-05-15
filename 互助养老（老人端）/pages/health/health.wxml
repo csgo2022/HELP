@@ -1,0 +1,74 @@
+<view class="page-container">
+  <!-- Header -->
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title">AI 健康管理</text>
+    </view>
+  </view>
+
+  <!-- Upload Area -->
+  <view class="upload-area" bindtap="handleUpload">
+    <view class="upload-icon-wrap">
+      <image class="icon-svg-xl" src="/images/icons/camera.svg" mode="aspectFit" style="stroke:#fff;stroke-width:2;" />
+    </view>
+    <text class="upload-text">拍照上传体检报告</text>
+    <text class="upload-desc">让 AI 帮您读懂健康报告</text>
+  </view>
+
+  <!-- Analysis Result -->
+  <block wx:if="{{hasResult && analysis}}">
+    <!-- Metrics Grid -->
+    <view class="metrics-grid">
+      <view class="metric-card" wx:for="{{analysis.metrics}}" wx:key="name">
+        <view class="metric-header">
+          <image class="icon-svg-sm" src="/images/icons/activity.svg" mode="aspectFit" style="stroke:{{item.status === '偏高' || item.status === '偏低' ? 'var(--color-error)' : 'var(--color-secondary)'}};" />
+          <text class="metric-label">{{item.name}}</text>
+        </view>
+        <view class="metric-value-row">
+          <text class="metric-value {{item.status === '偏高' || item.status === '偏低' ? 'warn-value' : 'good-value'}}">{{item.value}}</text>
+          <text class="metric-unit" wx:if="{{item.unit}}">{{item.unit}}</text>
+        </view>
+        <text class="metric-range" wx:if="{{item.range}}">参考: {{item.range}}</text>
+        <view class="metric-badge {{item.status === '偏高' || item.status === '偏低' ? 'warn-badge' : (item.status === '正常' ? 'good-badge' : '')}}">
+          {{item.status}}
+        </view>
+      </view>
+    </view>
+
+    <!-- AI Advice -->
+    <view class="ai-advice-card">
+      <view class="ai-advice-header">
+        <view class="ai-icon-wrap">
+          <image class="icon-svg-lg" src="/images/icons/heart-pulse.svg" mode="aspectFit" style="stroke:#fff;stroke-width:2;" />
+        </view>
+        <text class="ai-advice-title">AI 智能养护建议</text>
+      </view>
+
+      <view class="risk-box" wx:if="{{analysis.riskLevel === 'attention' || analysis.riskLevel === 'warning'}}">
+        <text class="risk-title">{{analysis.riskLevel === 'warning' ? '⚠️ 紧急风险提示' : '⚡ 注意事项'}}</text>
+        <text class="risk-desc">{{analysis.summary}}</text>
+      </view>
+
+      <view class="summary-box" wx:if="{{analysis.riskLevel === 'normal'}}">
+        <text class="risk-title">✅ 总体评价</text>
+        <text class="risk-desc">{{analysis.summary}}</text>
+      </view>
+
+      <view class="advice-list" wx:if="{{analysis.advice && analysis.advice.length > 0}}">
+        <text class="advice-title">💡 健康建议</text>
+        <view class="advice-item" wx:for="{{analysis.advice}}" wx:key="*this">
+          <text class="advice-bullet">•</text>
+          <text class="advice-text">{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- Empty State -->
+  <view class="empty-state" wx:if="{{records.length === 0 && !hasResult}}">
+    <image class="empty-icon" src="/images/icons/health.svg" mode="aspectFit" />
+    <text class="empty-text">暂无健康记录</text>
+    <text class="empty-desc">点击上方区域上传体检报告开始分析</text>
+  </view>
+</view>

@@ -1,0 +1,51 @@
+.ann-detail-content {
+  padding: 24rpx 0;
+}
+
+.ann-detail-header {
+  margin-bottom: 48rpx;
+}
+
+.ann-detail-tags {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.ann-detail-tag {
+  font-size: 20rpx;
+  font-weight: 800;
+  color: var(--color-primary-container);
+  padding: 4rpx 20rpx;
+  background: rgba(255, 140, 66, 0.1);
+  border-radius: 999rpx;
+}
+
+.ann-detail-date {
+  font-size: 22rpx;
+  color: #a1a1aa;
+  font-weight: 600;
+}
+
+.ann-detail-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 800;
+  color: var(--color-on-surface);
+  line-height: 1.3;
+}
+
+.ann-detail-body {
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 48rpx;
+  box-shadow: 0 8rpx 24rpx rgba(148, 107, 82, 0.08);
+}
+
+.ann-detail-text {
+  display: block;
+  font-size: 28rpx;
+  line-height: 1.8;
+  color: #52525b;
+}

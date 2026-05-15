@@ -1,0 +1,271 @@
+.booking-content {
+  padding: 32rpx 40rpx 48rpx;
+  max-width: 700rpx;
+  margin: 0 auto;
+}
+
+/* Search Bar */
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.search-icon {
+  position: absolute;
+  left: 32rpx;
+  width: 32rpx;
+  height: 32rpx;
+  z-index: 1;
+}
+
+.search-input {
+  width: 100%;
+  height: 112rpx;
+  background: white;
+  border-radius: 28rpx;
+  padding-left: 88rpx;
+  padding-right: 88rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--color-on-surface);
+  box-sizing: border-box;
+  box-shadow: 0 12rpx 32rpx -8rpx rgba(148, 107, 82, 0.15);
+  border: 2rpx solid transparent;
+}
+
+.search-clear {
+  position: absolute;
+  right: 24rpx;
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.clear-icon {
+  width: 28rpx;
+  height: 28rpx;
+  opacity: 0.35;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 40rpx;
+  gap: 16rpx;
+}
+
+.empty-icon {
+  width: 80rpx;
+  height: 80rpx;
+  opacity: 0.25;
+  margin-bottom: 16rpx;
+}
+
+.empty-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--color-on-surface-variant);
+}
+
+.empty-desc {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: var(--color-outline);
+}
+
+/* Filters */
+.filter-scroll {
+  white-space: nowrap;
+  margin-bottom: 48rpx;
+  padding-bottom: 16rpx;
+}
+
+.filter-list {
+  display: flex;
+  gap: 24rpx;
+}
+
+.filter-item {
+  flex-shrink: 0;
+  padding: 24rpx 48rpx;
+  border-radius: 100rpx;
+  font-size: 24rpx;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.filter-active {
+  background: var(--color-primary-container);
+  color: white;
+  box-shadow: 0 8rpx 24rpx rgba(155, 69, 0, 0.2);
+}
+
+.filter-default {
+  background: white;
+  color: var(--color-on-surface-variant);
+  border: 2rpx solid var(--color-outline-variant);
+}
+
+.filter-default:active {
+  background: rgba(255, 140, 66, 0.05);
+}
+
+/* Task List */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 48rpx;
+}
+
+.task-card {
+  background: white;
+  border-radius: 48rpx;
+  padding: 48rpx;
+  box-shadow: 0 12rpx 32rpx -8rpx rgba(148, 107, 82, 0.15);
+  border: 2rpx solid #faf8f6;
+}
+
+.task-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32rpx;
+}
+
+.task-user {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.task-icon-wrap {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-orange-light {
+  background: rgba(255, 140, 66, 0.12);
+}
+
+.task-icon {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.task-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.task-distance {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.loc-icon {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.loc-text {
+  font-size: 22rpx;
+  color: var(--color-on-surface-variant);
+  font-weight: 500;
+}
+
+.task-reward {
+  background: rgba(133, 250, 81, 0.2);
+  padding: 8rpx 24rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.clock-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.reward-text {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--color-on-secondary-container);
+}
+
+.task-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  margin-bottom: 48rpx;
+}
+
+.task-time {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.detail-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.detail-text {
+  font-size: 22rpx;
+  color: var(--color-on-surface-variant);
+  font-weight: 700;
+}
+
+.task-desc {
+  font-size: 22rpx;
+  color: var(--color-on-surface-variant);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.task-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.signup-btn {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  background: var(--color-primary-container);
+  color: white;
+  font-weight: 700;
+  font-size: 28rpx;
+  padding: 24rpx 56rpx;
+  border-radius: 28rpx;
+  box-shadow: 0 8rpx 32rpx rgba(155, 69, 0, 0.2);
+}
+
+.signup-btn:active {
+  transform: scale(0.95);
+}
+
+.send-icon {
+  width: 28rpx;
+  height: 28rpx;
+}

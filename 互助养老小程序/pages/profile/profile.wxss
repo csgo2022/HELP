@@ -1,0 +1,328 @@
+/* =============================================
+   个人中心样式 — "纸间温度" 设计语言
+   ============================================= */
+
+.page-content {
+  padding: 16rpx 32rpx 200rpx;
+  max-width: 700rpx;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+}
+
+/* =============================================
+   Profile Card — 个人卡片
+   ============================================= */
+.profile-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 48rpx;
+  overflow: hidden;
+  box-shadow:
+    0 4rpx 16rpx rgba(100, 60, 30, 0.06),
+    0 12rpx 32rpx -8rpx rgba(100, 60, 30, 0.08);
+  border: 2rpx solid rgba(199, 81, 31, 0.06);
+}
+
+.profile-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200rpx;
+  background: linear-gradient(145deg, #c7511f 0%, #a83e12 100%);
+  border-radius: 0 0 80rpx 80rpx;
+  opacity: 0.9;
+}
+
+.profile-card-bg::after {
+  content: '';
+  position: absolute;
+  top: -40rpx;
+  right: -20rpx;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.profile-card-inner {
+  position: relative;
+  z-index: 1;
+  padding: 40rpx;
+  display: flex;
+  align-items: center;
+  gap: 32rpx;
+}
+
+/* Avatar */
+.profile-avatar-section {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.profile-avatar-frame {
+  position: relative;
+  width: 144rpx;
+  height: 144rpx;
+  border-radius: 36rpx;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.profile-avatar-border {
+  position: absolute;
+  top: -4rpx;
+  left: -4rpx;
+  right: -4rpx;
+  bottom: -4rpx;
+  border-radius: 40rpx;
+  border: 4rpx solid rgba(255, 255, 255, 0.6);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.profile-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar-badge {
+  position: absolute;
+  bottom: -4rpx;
+  right: -4rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: #c7511f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4rpx solid #ffffff;
+  z-index: 3;
+}
+
+.profile-avatar-badge-icon {
+  width: 20rpx;
+  height: 20rpx;
+}
+
+.profile-edit-hint {
+  position: absolute;
+  bottom: -32rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20rpx;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* User Info */
+.profile-info-section {
+  flex: 1;
+  padding-top: 36rpx;
+}
+
+.profile-name-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 6rpx;
+}
+
+.profile-name {
+  font-size: 36rpx;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 1rpx;
+}
+
+.profile-level {
+  font-size: 18rpx;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 4rpx 16rpx;
+  border-radius: 100rpx;
+  letter-spacing: 1rpx;
+}
+
+.profile-motto {
+  display: block;
+  font-size: 22rpx;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* =============================================
+   Achievement Row — 成就徽章
+   ============================================= */
+.achievement-row {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 40rpx;
+  padding: 28rpx 16rpx;
+  box-shadow:
+    0 4rpx 16rpx rgba(100, 60, 30, 0.04),
+    0 8rpx 24rpx -8rpx rgba(100, 60, 30, 0.06);
+  border: 2rpx solid rgba(199, 81, 31, 0.04);
+}
+
+.achievement-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.achievement-icon-wrap {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rpx;
+}
+
+.achievement-icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.achievement-value {
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #2c1810;
+  line-height: 1.2;
+}
+
+.achievement-label {
+  font-size: 20rpx;
+  font-weight: 500;
+  color: #8a7a6e;
+}
+
+.achievement-divider {
+  width: 2rpx;
+  height: 56rpx;
+  background: #f0ebe4;
+  flex-shrink: 0;
+}
+
+/* =============================================
+   Menu Section — 菜单列表
+   ============================================= */
+.menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 32rpx 36rpx;
+  border-radius: 40rpx;
+  box-shadow:
+    0 4rpx 16rpx rgba(100, 60, 30, 0.04),
+    0 8rpx 24rpx -8rpx rgba(100, 60, 30, 0.06);
+  border: 2rpx solid rgba(199, 81, 31, 0.04);
+  transition: all 0.2s;
+}
+
+.menu-hover {
+  transform: translateX(8rpx);
+  border-color: rgba(199, 81, 31, 0.12);
+}
+
+.menu-item-left {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.menu-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.menu-icon-img {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.menu-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.menu-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #2c1810;
+  line-height: 1.3;
+}
+
+.menu-sub {
+  font-size: 22rpx;
+  font-weight: 500;
+  color: #8a7a6e;
+}
+
+.menu-arrow {
+  width: 24rpx;
+  height: 24rpx;
+  opacity: 0.3;
+}
+
+/* =============================================
+   Logout — 退出按钮
+   ============================================= */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  background: #ffffff;
+  border: 2rpx solid rgba(199, 81, 31, 0.1);
+  color: #c7511f;
+  font-weight: 700;
+  font-size: 28rpx;
+  padding: 36rpx;
+  border-radius: 40rpx;
+  margin-top: 8rpx;
+  box-shadow:
+    0 4rpx 16rpx rgba(100, 60, 30, 0.04),
+    0 8rpx 24rpx -8rpx rgba(100, 60, 30, 0.06);
+  transition: all 0.2s;
+}
+
+.logout-btn:active {
+  transform: scale(0.97);
+  background: rgba(199, 81, 31, 0.03);
+  border-color: rgba(199, 81, 31, 0.2);
+}
+
+.logout-icon {
+  width: 32rpx;
+  height: 32rpx;
+  opacity: 0.6;
+}

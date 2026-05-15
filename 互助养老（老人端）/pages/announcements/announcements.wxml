@@ -1,0 +1,18 @@
+<view class="page-container">
+  <view class="page-header">
+    <view class="page-header-left">
+      <button class="back-btn" bindtap="goBack">◀</button>
+      <text class="page-title">社区公告</text>
+    </view>
+  </view>
+
+  <view class="announce-list">
+    <view class="announce-item" wx:for="{{announcements}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+      <view class="announce-top">
+        <text class="announce-date">{{item.date}}</text>
+      </view>
+      <text class="announce-title">{{item.title}}</text>
+      <text class="announce-content">{{item.content}}</text>
+    </view>
+  </view>
+</view>

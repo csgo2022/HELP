@@ -1,0 +1,106 @@
+<top-app-bar title="慈善贡献排行榜" showBack="{{true}}"></top-app-bar>
+
+<view class="leaderboard-page">
+  <!-- Tab Switcher -->
+  <view class="tab-switcher">
+    <view
+      class="tab-item {{activeTab === 'weekly' ? 'tab-active' : ''}}"
+      data-tab="weekly"
+      bindtap="onTabChange"
+    >周榜</view>
+    <view
+      class="tab-item {{activeTab === 'monthly' ? 'tab-active' : ''}}"
+      data-tab="monthly"
+      bindtap="onTabChange"
+    >月榜</view>
+    <view
+      class="tab-item {{activeTab === 'total' ? 'tab-active' : ''}}"
+      data-tab="total"
+      bindtap="onTabChange"
+    >总榜</view>
+  </view>
+
+  <!-- Podium Section -->
+  <view class="podium-section">
+    <!-- 2nd Place -->
+    <view class="podium-item podium-second">
+      <view class="medal-icon">
+        <image src="/images/icons/medal-silver.svg" mode="aspectFit" class="medal-img"></image>
+      </view>
+      <view class="avatar-wrapper small">
+        <view class="avatar-circle avatar-color-{{topThree[1].colorIndex || 0}}" wx:if="{{!topThree[1].avatar}}">
+          <text class="avatar-initials">{{topThree[1].initial}}</text>
+        </view>
+        <image wx:else src="{{topThree[1].avatar}}" mode="aspectFill" class="avatar-image"></image>
+      </view>
+      <text class="podium-name">{{topThree[1].name}}</text>
+      <text class="podium-score">{{topThree[1].score}}</text>
+    </view>
+
+    <!-- 1st Place -->
+    <view class="podium-item podium-first">
+      <view class="medal-icon">
+        <image src="/images/icons/star.svg" mode="aspectFit" class="medal-img gold"></image>
+      </view>
+      <view class="crown-icon">
+        <image src="/images/icons/crown.svg" mode="aspectFit" class="crown-img"></image>
+      </view>
+      <view class="avatar-wrapper large ring-effect">
+        <view class="avatar-circle avatar-color-{{topThree[0].colorIndex || 1}}" wx:if="{{!topThree[0].avatar}}">
+          <text class="avatar-initials large">{{topThree[0].initial}}</text>
+        </view>
+        <image wx:else src="{{topThree[0].avatar}}" mode="aspectFill" class="avatar-image"></image>
+      </view>
+      <text class="podium-name first">{{topThree[0].name}}</text>
+      <text class="podium-score first">{{topThree[0].score}}</text>
+    </view>
+
+    <!-- 3rd Place -->
+    <view class="podium-item podium-third">
+      <view class="medal-icon">
+        <image src="/images/icons/medal-bronze.svg" mode="aspectFit" class="medal-img"></image>
+      </view>
+      <view class="avatar-wrapper small">
+        <view class="avatar-circle avatar-color-{{topThree[2].colorIndex || 2}}" wx:if="{{!topThree[2].avatar}}">
+          <text class="avatar-initials">{{topThree[2].initial}}</text>
+        </view>
+        <image wx:else src="{{topThree[2].avatar}}" mode="aspectFill" class="avatar-image"></image>
+      </view>
+      <text class="podium-name">{{topThree[2].name}}</text>
+      <text class="podium-score">{{topThree[2].score}}</text>
+    </view>
+  </view>
+
+  <!-- Ranking List -->
+  <view class="ranking-list">
+    <view class="ranking-item" wx:for="{{listPlayers}}" wx:key="rank">
+      <view class="rank-number">{{item.rank}}</view>
+      <view class="rank-avatar">
+        <view class="avatar-circle avatar-color-{{item.colorIndex || 3}}" wx:if="{{!item.avatar}}">
+          <text class="avatar-initials small">{{item.initial}}</text>
+        </view>
+        <image wx:else src="{{item.avatar}}" mode="aspectFill" class="avatar-image small"></image>
+      </view>
+      <view class="rank-info">
+        <text class="rank-name">{{item.name}}</text>
+      </view>
+      <view class="rank-score-badge">{{item.score}}</view>
+    </view>
+  </view>
+
+  <!-- Bottom Profile Bar -->
+  <view class="bottom-profile-bar">
+    <view class="profile-content">
+      <view class="profile-avatar">
+        <view class="avatar-circle profile-avatar-bg">
+          <text class="avatar-initials profile">{{currentUser.initial}}</text>
+        </view>
+      </view>
+      <view class="profile-info">
+        <text class="profile-name">{{currentUser.name}} <text class="profile-tag">(您)</text></text>
+        <text class="profile-stats">本周累计 {{currentUser.hours}} 小时</text>
+      </view>
+      <view class="profile-badge">{{currentUser.hours}}小时</view>
+    </view>
+  </view>
+</view>

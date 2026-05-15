@@ -1,0 +1,134 @@
+.completion-content {
+  padding: 32rpx 40rpx 200rpx;
+  max-width: 700rpx;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.section-desc {
+  font-size: 24rpx;
+  color: #8c8c8c;
+  display: block;
+  margin-bottom: 24rpx;
+}
+
+.photo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.photo-item {
+  width: 200rpx;
+  height: 200rpx;
+  position: relative;
+}
+
+.photo-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 24rpx;
+  object-fit: cover;
+}
+
+.photo-remove {
+  position: absolute;
+  top: -12rpx;
+  right: -12rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+}
+
+.photo-add {
+  width: 200rpx;
+  height: 200rpx;
+  border: 4rpx dashed #d4d4d4;
+  border-radius: 24rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  background: #fafafa;
+}
+
+.photo-add-icon {
+  font-size: 56rpx;
+  color: #a1a1aa;
+  line-height: 1;
+}
+
+.photo-add-text {
+  font-size: 22rpx;
+  color: #a1a1aa;
+}
+
+.summary-input {
+  width: 100%;
+  height: 240rpx;
+  background: #f5f5f5;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 22rpx;
+  color: #a1a1aa;
+  margin-top: 8rpx;
+}
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(20px);
+  border-top: 2rpx solid rgba(0,0,0,0.04);
+  padding: 32rpx 40rpx;
+  padding-bottom: calc(32rpx + env(safe-area-inset-bottom));
+  z-index: 50;
+}
+
+.bottom-bar-inner {
+  max-width: 700rpx;
+  margin: 0 auto;
+}
+
+.submit-btn {
+  width: 100%;
+  height: 112rpx;
+  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
+  color: white;
+  font-size: 34rpx;
+  font-weight: 700;
+  border-radius: 36rpx;
+  border: none;
+  box-shadow: 0 12rpx 32rpx rgba(255, 107, 53, 0.25);
+  line-height: 112rpx;
+}
+
+.submit-btn:active { transform: scale(0.97); }
+.submit-btn[disabled] { opacity: 0.6; }
