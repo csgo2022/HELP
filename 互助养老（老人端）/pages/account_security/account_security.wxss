@@ -102,6 +102,15 @@
   flex-shrink: 0;
 }
 
+.security-action-icon-svg {
+  width: 40rpx;
+  height: 40rpx;
+  padding: 20rpx;
+  background: #fafafa;
+  border-radius: 24rpx;
+  flex-shrink: 0;
+}
+
 .security-action-text {
   flex: 1;
 }

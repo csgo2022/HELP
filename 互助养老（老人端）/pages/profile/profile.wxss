@@ -224,10 +224,14 @@
   background: #fafafa;
 }
 
-.menu-list-icon {
-  font-size: 40rpx;
-  color: #71717a;
+.menu-list-icon-wrap {
+  padding: 24rpx;
+  background: #fff1e6;
+  border-radius: 24rpx;
   margin-right: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu-list-label {

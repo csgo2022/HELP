@@ -28,52 +28,97 @@
     <text class="slogan-sub">您的每一份善意都被时光温柔铭记</text>
   </view>
 
-  <!-- Applications Section -->
-  <view class="list-section" wx:if="{{applications.length > 0}}">
-    <view class="list-header">
-      <text class="list-title">我的报名</text>
-    </view>
-
-    <navigator url="/pages/service-detail/service-detail?id={{item.id}}" wx:for="{{applications}}" wx:key="id" class="history-item">
-      <view class="history-left">
-        <view class="history-icon-wrap">
-          <image class="history-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
-        </view>
-        <view class="history-info">
-          <text class="history-title">{{item.title}}</text>
-          <text class="history-meta">{{item.statusText}}</text>
-        </view>
-      </view>
-      <view class="history-right">
-        <text class="history-status status-{{item.status}}">{{item.statusText}}</text>
-      </view>
-    </navigator>
+  <!-- Tab Bar -->
+  <view class="tab-bar">
+    <view class="tab-item {{tab === 'all' ? 'active' : ''}}" data-tab="all" bindtap="switchTab">全部</view>
+    <view class="tab-item {{tab === 'active' ? 'active' : ''}}" data-tab="active" bindtap="switchTab">进行中</view>
+    <view class="tab-item {{tab === 'completed' ? 'active' : ''}}" data-tab="completed" bindtap="switchTab">已完成</view>
   </view>
 
-  <!-- Completed Records -->
-  <view class="list-section">
-    <view class="list-header">
-      <text class="list-title">已存入记录</text>
-    </view>
-
-    <navigator url="/pages/record-detail/record-detail?id={{item.id}}" wx:for="{{history}}" wx:key="id" class="history-item">
-      <view class="history-left">
-        <view class="history-icon-wrap">
-          <image class="history-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
+  <!-- All: show applications + history -->
+  <block wx:if="{{tab === 'all'}}">
+    <view class="list-section" wx:if="{{activeApplications.length > 0}}">
+      <navigator url="/pages/service-detail/service-detail?id={{item.id}}" wx:for="{{activeApplications}}" wx:key="id" class="history-item">
+        <view class="history-left">
+          <view class="history-icon-wrap">
+            <image class="history-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
+          </view>
+          <view class="history-info">
+            <text class="history-title">{{item.title}}</text>
+            <text class="history-meta">{{item.time}} · {{item.location}}</text>
+          </view>
         </view>
-        <view class="history-info">
-          <text class="history-title">{{item.title}}</text>
-          <text class="history-meta">{{item.time}} · {{item.location}}</text>
+        <view class="history-right">
+          <text class="history-status status-{{item.status}}">{{item.statusText}}</text>
         </view>
-      </view>
-      <view class="history-right">
-        <text class="history-duration">{{item.duration}}</text>
-        <text class="history-status">{{item.statusText}}</text>
-      </view>
-    </navigator>
-
-    <view class="empty-tip" wx:if="{{history.length === 0 && applications.length === 0}}">
-      <text class="empty-text">暂无记录</text>
+      </navigator>
     </view>
-  </view>
+    <view class="list-section">
+      <navigator url="/pages/record-detail/record-detail?id={{item.id}}" wx:for="{{history}}" wx:key="id" class="history-item">
+        <view class="history-left">
+          <view class="history-icon-wrap">
+            <image class="history-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
+          </view>
+          <view class="history-info">
+            <text class="history-title">{{item.title}}</text>
+            <text class="history-meta">{{item.time}} · {{item.location}}</text>
+          </view>
+        </view>
+        <view class="history-right">
+          <text class="history-duration">{{item.duration}}</text>
+          <text class="history-status">{{item.statusText}}</text>
+        </view>
+      </navigator>
+      <view class="empty-tip" wx:if="{{history.length === 0 && activeApplications.length === 0}}">
+        <text class="empty-text">暂无记录</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- Active: filtered applications -->
+  <block wx:elif="{{tab === 'active'}}">
+    <view class="list-section">
+      <navigator url="/pages/service-detail/service-detail?id={{item.id}}" wx:for="{{filteredApplications}}" wx:key="id" class="history-item">
+        <view class="history-left">
+          <view class="history-icon-wrap">
+            <image class="history-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
+          </view>
+          <view class="history-info">
+            <text class="history-title">{{item.title}}</text>
+            <text class="history-meta">{{item.time}} · {{item.location}}</text>
+          </view>
+        </view>
+        <view class="history-right">
+          <text class="history-status status-{{item.status}}">{{item.statusText}}</text>
+        </view>
+      </navigator>
+      <view class="empty-tip" wx:if="{{filteredApplications.length === 0}}">
+        <text class="empty-text">暂无进行中的服务</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- Completed: history only -->
+  <block wx:elif="{{tab === 'completed'}}">
+    <view class="list-section">
+      <navigator url="/pages/record-detail/record-detail?id={{item.id}}" wx:for="{{history}}" wx:key="id" class="history-item">
+        <view class="history-left">
+          <view class="history-icon-wrap">
+            <image class="history-icon" src="/images/icons/{{item.icon}}.svg" mode="aspectFit" />
+          </view>
+          <view class="history-info">
+            <text class="history-title">{{item.title}}</text>
+            <text class="history-meta">{{item.time}} · {{item.location}}</text>
+          </view>
+        </view>
+        <view class="history-right">
+          <text class="history-duration">{{item.duration}}</text>
+          <text class="history-status">{{item.statusText}}</text>
+        </view>
+      </navigator>
+      <view class="empty-tip" wx:if="{{history.length === 0}}">
+        <text class="empty-text">暂无已完成的服务</text>
+      </view>
+    </view>
+  </block>
 </view>

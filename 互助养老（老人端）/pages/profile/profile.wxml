@@ -19,18 +19,6 @@
 
   <!-- Menu Items -->
   <view class="menu-section">
-    <view class="menu-btn" bindtap="goRecords">
-      <view class="menu-btn-left">
-        <view class="menu-icon-wrap">
-          <image class="icon-svg-lg" src="/images/icons/history.svg" mode="aspectFit" style="stroke:var(--color-primary-container);" />
-        </view>
-        <view class="menu-text-wrap">
-          <text class="menu-label">历史服务记录</text>
-          <text class="menu-sublabel">查看您的过往互助历史</text>
-        </view>
-      </view>
-      <text class="menu-arrow">▶</text>
-    </view>
 
     <!-- Bind Family -->
     <view class="bind-family-card">
@@ -44,20 +32,28 @@
     <!-- Menu List -->
     <view class="menu-list">
       <view class="menu-list-item" bindtap="goProfileSettings">
-        <text class="menu-list-icon">👤</text>
+        <view class="menu-list-icon-wrap">
+          <image class="icon-svg-lg" src="/images/icons/user.svg" mode="aspectFit" style="stroke:var(--color-primary-container);" />
+        </view>
         <text class="menu-list-label">个人基本信息</text>
         <text class="menu-list-arrow">▶</text>
       </view>
       <view class="menu-list-item" bindtap="goAddressBook">
-        <text class="menu-list-icon">📍</text>
+        <view class="menu-list-icon-wrap">
+          <image class="icon-svg-lg" src="/images/icons/map-pin.svg" mode="aspectFit" style="stroke:var(--color-primary-container);" />
+        </view>
         <text class="menu-list-label">常用服务地址</text>
         <text class="menu-list-arrow">▶</text>
       </view>
       <view class="menu-list-item logout" bindtap="handleLogout">
-        <text class="menu-list-icon">🚪</text>
+        <view class="menu-list-icon-wrap">
+          <image class="icon-svg-lg" src="/images/icons/log-out.svg" mode="aspectFit" style="stroke:var(--color-error);" />
+        </view>
         <text class="menu-list-label logout-text">退出登录</text>
       </view>
     </view>
+
+   
   </view>
 
   <!-- Tab Bar -->

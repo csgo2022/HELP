@@ -3,21 +3,22 @@
   <view class="page-header">
     <view class="page-header-left">
       <button class="back-btn" bindtap="goBack">◀</button>
-      <text class="page-title">AI 健康管理</text>
+      <text class="page-title">健康报告详情</text>
     </view>
   </view>
 
-  <!-- Upload Area -->
-  <view class="upload-area" bindtap="handleUpload">
-    <view class="upload-icon-wrap">
-      <image class="icon-svg-xl" src="/images/icons/camera.svg" mode="aspectFit" style="stroke:#fff;stroke-width:2;" />
+  <view class="detail-content" wx:if="{{!loading && analysis}}">
+    <!-- Report Image -->
+    <view class="report-image-wrap" wx:if="{{record.image}}" bindtap="previewImage" data-url="{{record.image}}">
+      <image class="report-image" src="{{record.image}}" mode="aspectFill" />
+      <view class="report-image-overlay">
+        <text class="report-image-hint">点击查看原图</text>
+      </view>
     </view>
-    <text class="upload-text">拍照上传体检报告</text>
-    <text class="upload-desc">让 AI 帮您读懂健康报告</text>
-  </view>
 
-  <!-- Analysis Result -->
-  <block wx:if="{{hasResult && analysis}}">
+    <!-- Record Date -->
+    <text class="record-date">📅 {{record.date}}</text>
+
     <!-- Metrics Grid -->
     <view class="metrics-grid">
       <view class="metric-card" wx:for="{{analysis.metrics}}" wx:key="name">
@@ -63,32 +64,16 @@
         </view>
       </view>
     </view>
-  </block>
-
-  <!-- History -->
-  <view class="history-section" wx:if="{{historyList.length > 0}}">
-    <view class="history-header">
-      <text class="history-header-title">📋 历史记录</text>
-    </view>
-    <view class="history-list">
-      <view class="history-record {{item.id === selectedId ? 'history-record-active' : ''}}"
-             wx:for="{{historyList}}" wx:key="id"
-             data-id="{{item.id}}" bindtap="onSelectRecord">
-        <view class="history-record-left">
-          <text class="history-record-date">{{item.date}}</text>
-          <text class="history-record-summary" wx:if="{{item.summary}}">{{item.summary}}</text>
-        </view>
-        <view class="history-tag {{item.riskLevel === 'warning' ? 'tag-warning' : (item.riskLevel === 'attention' ? 'tag-attention' : 'tag-normal')}}">
-          {{item.riskLevel === 'warning' ? '紧急' : (item.riskLevel === 'attention' ? '注意' : '正常')}}
-        </view>
-      </view>
-    </view>
   </view>
 
-  <!-- Empty State -->
-  <view class="empty-state" wx:if="{{records.length === 0 && !hasResult}}">
+  <!-- Loading -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- Not found -->
+  <view class="empty-state" wx:if="{{!loading && !analysis}}">
     <image class="empty-icon" src="/images/icons/health.svg" mode="aspectFit" />
-    <text class="empty-text">暂无健康记录</text>
-    <text class="empty-desc">点击上方区域上传体检报告开始分析</text>
+    <text class="empty-text">未找到该记录</text>
   </view>
 </view>

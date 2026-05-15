@@ -91,6 +91,13 @@
   margin-right: 32rpx;
 }
 
+.info-icon-svg {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 32rpx;
+  flex-shrink: 0;
+}
+
 .info-label {
   font-size: 32rpx;
   font-weight: 700;
@@ -127,6 +134,15 @@
   color: var(--color-secondary);
   border-radius: 24rpx;
   font-size: 40rpx;
+}
+
+.security-icon-svg {
+  width: 40rpx;
+  height: 40rpx;
+  padding: 24rpx;
+  background: var(--color-secondary-container);
+  border-radius: 24rpx;
+  flex-shrink: 0;
 }
 
 .security-label {

@@ -20,7 +20,7 @@
     <view class="settings-card">
       <view class="security-action" bindtap="goChangePassword">
         <view class="security-action-left">
-          <view class="security-action-icon-wrap">🔒</view>
+          <image class="security-action-icon-svg" src="/images/icons/icon-lock.svg" mode="aspectFit" />
           <view class="security-action-text">
             <text class="security-action-title">修改登录密码</text>
             <text class="security-action-desc">建议定期更换，更安全</text>
@@ -30,7 +30,7 @@
       </view>
       <view class="security-action" bindtap="goChangePhone">
         <view class="security-action-left">
-          <view class="security-action-icon-wrap">📞</view>
+          <image class="security-action-icon-svg" src="/images/icons/icon-phone.svg" mode="aspectFit" />
           <view class="security-action-text">
             <text class="security-action-title">换绑手机号</text>
             <text class="security-action-desc">138****9527</text>

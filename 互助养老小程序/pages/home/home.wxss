@@ -443,12 +443,8 @@
 }
 
 /* 各卡片配色 */
-.bento-card-ai {
-  background: linear-gradient(145deg, #7c5cbf 0%, #6341a8 100%);
-  color: #ffffff;
-}
-
+.bento-card-ai,
 .bento-card-announce {
-  background: linear-gradient(145deg, #3a7d4c 0%, #2d6a3e 100%);
+  background: linear-gradient(145deg, #ff8c42 0%, #e67a30 100%);
   color: #ffffff;
 }

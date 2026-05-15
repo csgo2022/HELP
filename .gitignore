@@ -43,6 +43,36 @@ Desktop.ini
 !**/images/**/*.jpg
 !**/images/**/*.jpeg
 
+# Maven local repository (downloaded into project dir)
+mutual-aid-api/org/
+mutual-aid-api/com/
+mutual-aid-api/net/
+mutual-aid-api/io/
+mutual-aid-api/javax/
+mutual-aid-api/commons-*/
+mutual-aid-api/antlr/
+mutual-aid-api/aopalliance/
+mutual-aid-api/ch/
+mutual-aid-api/classworlds/
+mutual-aid-api/dom4j/
+mutual-aid-api/gnu/
+mutual-aid-api/jakarta/
+mutual-aid-api/javassist/
+mutual-aid-api/jline/
+mutual-aid-api/joda-time/
+mutual-aid-api/log4j/
+mutual-aid-api/netty/
+mutual-aid-api/ognl/
+mutual-aid-api/opensymphony/
+mutual-aid-api/redis/
+mutual-aid-api/sf/
+mutual-aid-api/software/
+mutual-aid-api/stax/
+mutual-aid-api/velocity/
+mutual-aid-api/xml-apis/
+mutual-aid-api/xpp3/
+mutual-aid-api/zkoss/
+
 # Demo / temp dirs
 java-demo-master/
 java-demo-master (1)/

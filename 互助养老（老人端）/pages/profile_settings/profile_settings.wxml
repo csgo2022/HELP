@@ -21,12 +21,12 @@
     <text class="settings-section-title">基本资料</text>
     <view class="settings-card">
       <view class="info-item">
-        <text class="info-icon">👤</text>
+        <image class="info-icon-svg" src="/images/icons/icon-user.svg" mode="aspectFit" />
         <text class="info-label">真实姓名</text>
         <text class="info-value">{{realName}}</text>
       </view>
       <view class="info-item">
-        <text class="info-icon">📞</text>
+        <image class="info-icon-svg" src="/images/icons/icon-phone.svg" mode="aspectFit" />
         <text class="info-label">联系电话</text>
         <text class="info-value">{{phone}}</text>
       </view>
@@ -39,7 +39,7 @@
     <view class="settings-card">
       <view class="security-item" bindtap="goAccountSecurity">
         <view class="security-left">
-          <view class="security-icon-wrap">✅</view>
+          <image class="security-icon-svg" src="/images/icons/icon-security.svg" mode="aspectFit" />
           <text class="security-label">账户安全中心</text>
         </view>
         <text class="security-arrow">▶</text>

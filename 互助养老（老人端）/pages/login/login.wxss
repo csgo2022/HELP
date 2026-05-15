@@ -109,6 +109,13 @@
   margin-right: 20rpx;
 }
 
+.input-icon-svg {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
 .form-input {
   flex: 1;
   height: 100%;

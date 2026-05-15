@@ -4,6 +4,7 @@
     "pages/register/register",
     "pages/home/home",
     "pages/health/health",
+    "pages/health-detail/health-detail",
     "pages/request/request",
     "pages/records/records",
     "pages/profile/profile",

@@ -181,6 +181,11 @@
   font-size: 24rpx;
   font-weight: 800;
   color: #a1a1aa;
+  flex-wrap: nowrap;
+}
+
+.applicant-stats text {
+  white-space: nowrap;
 }
 
 .applicant-rating {
@@ -444,11 +449,13 @@
   display: flex;
   gap: 8rpx;
   margin-bottom: 24rpx;
+  flex-wrap: nowrap;
 }
 
 .review-star {
   font-size: 40rpx;
   color: #e4e4e7;
+  flex-shrink: 0;
 }
 
 .review-star.active {

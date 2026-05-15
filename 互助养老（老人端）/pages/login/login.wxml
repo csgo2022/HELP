@@ -8,50 +8,22 @@
       <text class="login-subtitle">智慧康养社区，让生活更美好</text>
     </view>
 
-    <view class="login-tabs">
-      <view class="login-tab {{loginType === 'phone' ? 'active' : ''}}" data-type="phone" bindtap="switchLoginType">手机号登录</view>
-      <view class="login-tab {{loginType === 'account' ? 'active' : ''}}" data-type="account" bindtap="switchLoginType">账号密码登录</view>
-    </view>
-
     <view class="form-area">
-      <block wx:if="{{loginType === 'phone'}}">
-        <view class="form-group">
-          <text class="form-label">手机号</text>
-          <view class="input-wrapper">
-            <text class="input-icon">📞</text>
-            <input class="form-input" type="text" placeholder="请输入手机号" value="{{phoneNumber}}" bindinput="onPhoneInput" />
-          </view>
+      <view class="form-group">
+        <text class="form-label">账号</text>
+        <view class="input-wrapper">
+          <image class="input-icon-svg" src="/images/icons/icon-user.svg" mode="aspectFit" />
+          <input class="form-input" type="text" placeholder="请输入账号/手机号" value="{{account}}" bindinput="onAccountInput" />
         </view>
+      </view>
 
-        <view class="form-group">
-          <text class="form-label">验证码</text>
-          <view class="code-row">
-            <view class="input-wrapper flex-1">
-              <text class="input-icon">✅</text>
-              <input class="form-input" type="number" placeholder="请输入验证码" value="{{code}}" bindinput="onCodeInput" />
-            </view>
-            <button class="code-btn" bindtap="getCode">获取验证码</button>
-          </view>
+      <view class="form-group">
+        <text class="form-label">密码</text>
+        <view class="input-wrapper">
+          <image class="input-icon-svg" src="/images/icons/icon-lock.svg" mode="aspectFit" />
+          <input class="form-input" type="password" placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" />
         </view>
-      </block>
-
-      <block wx:else>
-        <view class="form-group">
-          <text class="form-label">账号</text>
-          <view class="input-wrapper">
-            <text class="input-icon">👤</text>
-            <input class="form-input" type="text" placeholder="请输入账号/手机号" value="{{account}}" bindinput="onAccountInput" />
-          </view>
-        </view>
-
-        <view class="form-group">
-          <text class="form-label">密码</text>
-          <view class="input-wrapper">
-            <text class="input-icon">🔒</text>
-            <input class="form-input" type="password" placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" />
-          </view>
-        </view>
-      </block>
+      </view>
     </view>
 
     <button class="login-btn" bindtap="handleLogin">

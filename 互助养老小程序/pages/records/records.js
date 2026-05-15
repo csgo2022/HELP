@@ -24,8 +24,11 @@ const STATUS_MAP = {
 
 Page({
   data: {
+    tab: 'all',
     history: [],
     applications: [],
+    activeApplications: [],
+    filteredApplications: [],
     totalHours: '0',
     todayHours: '0',
     todayPoints: 0
@@ -35,9 +38,36 @@ Page({
     await this.loadData();
   },
 
+  async onShow() {
+    await this.loadData();
+  },
+
   async onPullDownRefresh() {
     await this.loadData();
     wx.stopPullDownRefresh();
+  },
+
+  switchTab(e) {
+    const tab = e.currentTarget.dataset.tab;
+    this.setData({ tab }, () => this.filterList());
+  },
+
+  filterList() {
+    const { tab, applications } = this.data;
+
+    if (tab === 'all') {
+      this.setData({
+        activeApplications: applications.filter(a =>
+          a.status !== 'COMPLETED' && a.status !== 'CANCELLED'
+        )
+      });
+    } else if (tab === 'active') {
+      this.setData({
+        filteredApplications: applications.filter(a =>
+          a.status === 'IN_PROGRESS' || a.status === 'PENDING_CONFIRM' || a.status === 'MATCHING'
+        )
+      });
+    }
   },
 
   async loadData() {
@@ -73,9 +103,11 @@ Page({
           type: a.type || '',
           status: a.status || '',
           icon: TYPE_ICON_MAP[a.type] || 'support-agent',
-          statusText: STATUS_MAP[a.status] || a.status || ''
+          statusText: STATUS_MAP[a.status] || a.status || '',
+          time: a.appointmentDate ? (a.appointmentDate + (a.appointmentTime ? ' ' + a.appointmentTime : '')) : '',
+          location: a.address || ''
         }))
-      });
+      }, () => this.filterList());
     } catch (e) {
       wx.showToast({ title: e.message, icon: 'none' });
     }
